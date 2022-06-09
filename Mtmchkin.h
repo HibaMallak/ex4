@@ -1,6 +1,7 @@
 #ifndef MTMCHKIN_H_
 #define MTMCHKIN_H_
-
+#include <string>
+#include <queue>
 class Mtmchkin{
 
 public:
@@ -46,6 +47,13 @@ public:
     *          int - number of rounds played
     */
     int getNumberOfRounds() const;
+
+private:
+    int m_numOfPlayers;
+    int m_roundsPlayed;
+
+    
+
 };
 
 
