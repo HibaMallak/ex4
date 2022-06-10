@@ -1,6 +1,9 @@
 #include "Wizard.h"
 
-//Wizard::Wizard(const Player& p ) {}
+Wizard::Wizard()
+{
+    m_playerType="Wizard";
+}
 
 void Wizard::heal(int pointsToHeal) 
 {

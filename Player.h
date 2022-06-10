@@ -59,7 +59,7 @@ public:
      * @return
      *      void
     */
-    virtual void printInfo();
+    virtual void printInfo()=0 ; //??? shani
 
 
     /*
@@ -185,11 +185,11 @@ public:
 
 protected:
     const std::string m_name;
-    const std::string m_playerType;
     int m_level;
     int m_force;
     int m_HP;
     int m_coins;
+    const std::string m_playerType;
 
 };
 

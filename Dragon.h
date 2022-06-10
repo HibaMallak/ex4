@@ -11,6 +11,8 @@ class Dragon : public Card
     public:
         void applyEncounter(Player& player) const override; 
         void printInfo() const override;
+        Dragon();
+        ~Dragon()=default;
 
     private:
         int m_force = 25;

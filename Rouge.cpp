@@ -1,5 +1,9 @@
 #include "Rouge.h"
 
+Rouge::Rouge()
+{
+    m_playerType="Rouge";
+}
 void Rouge::addCoins(int coinsToAdd) 
 {
     if(coinsToAdd> MIN_NATURAL)

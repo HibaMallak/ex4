@@ -8,8 +8,12 @@ static const int DOUBLE_FORCE = 2;
 class Fighter : public Player
 {
     public:
-        int getAttackStrength() override;
-        void printInfo() override;
+    Fighter();
+    ~Fighter() = default;
+    Fighter& operator=(Rouge& p) =default;
+    int getAttackStrength() override;
+    void printInfo() override;
+
 };
 
 #endif

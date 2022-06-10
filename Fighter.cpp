@@ -1,5 +1,9 @@
 #include "Fighter.h"
 
+Fighter::Fighter()
+{
+    m_playerType="Fighter";
+}
 int Fighter::getAttackStrength()
 {
     return (DOUBLE_FORCE * this->m_force) + this->m_level;

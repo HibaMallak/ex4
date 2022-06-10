@@ -6,8 +6,9 @@
 class Treasure : public Card
 {
     public:
-        Treasure() = default;
-        void applyEncounter(Player& player) const override;
+        Treasure();
+        ~Treasure()= default;
+void applyEncounter(Player& player) const override;
 
     private:
         int m_coins = 10;

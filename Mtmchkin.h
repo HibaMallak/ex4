@@ -1,7 +1,12 @@
 #ifndef MTMCHKIN_H_
 #define MTMCHKIN_H_
-#include <string>
-#include <queue>
+#include "string.h"
+#include "Queue.h"
+#include "Card.h"
+#include <iostream>
+
+
+
 class Mtmchkin{
 
 public:
@@ -51,8 +56,10 @@ public:
 private:
     int m_numOfPlayers;
     int m_roundsPlayed;
+    Queue<Card> m_deck_cards;
+    Queue<Player> m_player_queue;
 
-    
+
 
 };
 

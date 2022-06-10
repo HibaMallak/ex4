@@ -1,8 +1,11 @@
 #include "Fairy.h"
+Fairy :: Fairy() : m_cardName("Fairy")
+{
 
+}
 void Fairy::applyEncounter(Player& player) const
 {
-    if(player.getPlayerType() == IS_WIZARD)
+    if(player.getPlayerType() != "Wizard")
     {
         player.heal(this->m_FairyHP);
         printFairyMessage(player.getPlayerType() == IS_WIZARD);

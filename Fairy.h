@@ -7,7 +7,10 @@ static const bool IS_WIZARD = true;
 class Fairy : public Card
 {
     public:
-        void applyEncounter(Player& player) const override;
+
+    Fairy();
+    ~Fairy() = default;
+    void applyEncounter(Player& player) const override;
 
     private:
         int m_FairyHP = 10;

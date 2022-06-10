@@ -1,5 +1,9 @@
 #include "Vampire.h"
 
+Vampire::Vampire() : m_cardName("Vampire")
+{
+
+}
 void Vampire::applyEncounter(Player& player) const
 {
     if(player.getAttackStrength()>= this->m_force )

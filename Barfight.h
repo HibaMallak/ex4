@@ -7,6 +7,8 @@ static const bool IS_FIGHTER = false;
 class Barfight : public Card
 {
     public:
+    Barfight();
+    ~Barfight() = default;
         void applyEncounter(Player& player) const override;
 
     private:

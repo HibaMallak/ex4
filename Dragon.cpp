@@ -1,5 +1,9 @@
 #include "Dragon.h"
 
+Dragon::Dragon() : m_cardName("Dragon")
+{
+
+}
 void Dragon::applyEncounter(Player& player) const
 {
     if(player.getAttackStrength()>= this->m_force )
@@ -10,6 +14,7 @@ void Dragon::applyEncounter(Player& player) const
     else
     {
         player.damage(PLAYER_MAX_HP);
+        //how getting out the player
     }
 }
 

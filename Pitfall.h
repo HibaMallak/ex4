@@ -7,11 +7,12 @@ static const bool IS_ROUGE = false;
 class Pitfall : public Card
 {
     public:
-        Pitfall() = default;
+        Pitfall();
+         ~Pitfall() = default;
         void applyEncounter(Player& player) const override;
 
     private:
-        int m_damage = 10;
+      int m_damage = 10;
 };
 
 #endif

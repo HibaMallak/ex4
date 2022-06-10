@@ -7,7 +7,7 @@ static const std::string MONSTER_NAME = "Goblin";
 class Goblin : public Card
 {
     public:
-        Goblin() = default;
+        Goblin();
         void applyEncounter(Player& player) const override; 
         void printInfo() const override;
 

@@ -1,7 +1,8 @@
 #include "Player.h"
 //add playertype whe neccessary
 
-Player::Player(const std::string name)
+Player::Player(const std::string name) : m_name(name), m_level(FIRST_LEVEL), m_force(DEFAULT_FORCE), m_HP(MAX_HP)
+, m_coins(COINS_ON_START)
 {
     if(name.length() > MAX_NAME_LENGTH || name.length() )
     {
@@ -9,27 +10,18 @@ Player::Player(const std::string name)
     }
     else
     {
+        int len= name.length();
         char charAtIndex;
-        for(int i= MIN_NATURAL; i< MAX_NAME_LENGTH; i++)
+
+        for(int i= MIN_NATURAL; i< len; i++)
         {
             charAtIndex = name.at(i);
-            if(charAtIndex< 'A' || charAtIndex > 'z' || (charAtIndex> 'Z' && charAtIndex< 'a'))
+            if(charAtIndex< 'A' || charAtIndex > 'z' || charAtIndex> 'Z' || charAtIndex< 'a')
                 printInvalidName();
         }
     }
-    m_name = name; //problem, no operator= for string??????
-    m_level = FIRST_LEVEL;
-    m_force = DEFAULT_FORCE;
-    m_HP = MAX_HP;
-    m_coins = COINS_ON_START;
-
 }
 
-/*
-void Player::printInfo()
-{
-    printPlayerDetails(this->m_name, this->m_level, this->m_force, this->m_HP, this->m_coins);
-}*/
 
 void Player::levelUp()
 {
