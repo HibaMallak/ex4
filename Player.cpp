@@ -13,10 +13,10 @@ Player::Player(const std::string name) : m_name(name), m_level(FIRST_LEVEL), m_f
         int len= name.length();
         char charAtIndex;
 
-        for(int i= MIN_NATURAL; i< len; i++)
+        for(int i = MIN_NATURAL; i < len; i++)
         {
             charAtIndex = name.at(i);
-            if(charAtIndex< 'A' || charAtIndex > 'z' || charAtIndex> 'Z' || charAtIndex< 'a')
+            if(charAtIndex < 'A' || charAtIndex > 'z' || (charAtIndex > 'Z' && charAtIndex < 'a'))
                 printInvalidName();
         }
     }

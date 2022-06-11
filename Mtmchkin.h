@@ -3,8 +3,14 @@
 #include "string.h"
 #include "Queue.h"
 #include "Card.h"
+#include "Player.h"
 #include <iostream>
+#include <string.h>
 
+static const bool GAME_OVER = true;
+static const int NO_ROUNDS_PLAYED = 0;
+static const int MIN_TEAM_SIZE = 2;
+static const int MAX_TEAM_SIZE = 6;
 
 
 class Mtmchkin{
@@ -56,8 +62,11 @@ public:
 private:
     int m_numOfPlayers;
     int m_roundsPlayed;
-    Queue<Card> m_deck_cards;
-    Queue<Player> m_player_queue;
+    Queue<Card> m_deckCards;
+    Queue<Player> m_playerQueue;
+    Queue<Player> m_defeatedPlayers;
+    Queue<Player> m_winners;
+
 
 
 
