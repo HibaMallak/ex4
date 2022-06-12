@@ -13,7 +13,7 @@ class Wizard : public Player
         Wizard& operator=(Wizard& p) =default;
 
         void heal(int pointsToHeal) override;
-        void printInfo() override;
+        void operator<<(std::ostream& os) override;
 };
 
 #endif

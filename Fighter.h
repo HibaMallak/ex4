@@ -12,7 +12,7 @@ class Fighter : public Player
     ~Fighter() = default;
     Fighter& operator=(Rouge& p) =default;
     int getAttackStrength() override;
-    void printInfo() override;
+    void operator<<(std::ostream& os) override;
 
 };
 

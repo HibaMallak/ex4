@@ -7,7 +7,9 @@
 #include <iostream>
 #include <string.h>
 
+static const bool REVERSE = true;
 static const bool GAME_OVER = true;
+static const int FIRST_RANK = 1;
 static const int NO_ROUNDS_PLAYED = 0;
 static const int MIN_TEAM_SIZE = 2;
 static const int MAX_TEAM_SIZE = 6;
@@ -67,11 +69,18 @@ private:
     Queue<Player> m_defeatedPlayers;
     Queue<Player> m_winners;
 
-
-
+    /*
+    * A helper function used in Mtmchkin::printLeaderBoard(). prints the leaderboard for one queue of players.
+    *
+    * @param players - the queue which contains the players needed to print thier leaderboard.
+    * @param ranking - the rank of the first player in currentQueue.
+    * @param reverse - if true, will print the elements in opposite way.
+    * @return
+    *      void
+    */
+    void printLeaderBoardHelper(Queue<Player> players, int ranking, bool reverse) const;
 
 };
 
 
-
-#endif /* MTMCHKIN_H_ */
+#endif 

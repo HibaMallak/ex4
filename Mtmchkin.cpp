@@ -31,8 +31,8 @@ Mtmchkin:: Mtmchkin(const std::string fileName) : m_roundsPlayed(NO_ROUNDS_PLAYE
         
             //this->m_playerQueue.pushBack(playerName);
     }
-    Queue(m_defeatedPlayers);
-    Queue(m_winners);
+    m_defeatedPlayers = new Queue<Player>();
+    m_winners = new Queue<Player>();
 
 
 
@@ -73,6 +73,41 @@ void Mtmchkin::playRound()
     }
 
     ++m_roundsPlayed;
+}
+
+void Mtmchkin::printLeaderBoardHelper(const Queue<Player> players, int ranking, bool reverse) const
+{
+    Queue<Player> current = players;
+    if(reverse)
+    {
+        Player reversedQueue [players.size()];
+        for(int i = 0; i < players.size(); ++i)
+        {
+            reversedQueue[i] = current.front();
+            current.popFront();
+        }
+        for(int i = players.size()-1; i >= 0 ; ++i)
+        {
+            current.pushBack(reversedQueue[i]);
+        }
+    }
+
+    for(int i = 0; i < players.size(); ++i)
+    {
+        printPlayerLeaderBoard(ranking +i, current.front());
+        current.popFront();
+    }
+}
+
+void Mtmchkin::printLeaderBoard() const
+{
+    printLeaderBoardStartMessage();
+    int ranking = FIRST_RANK;
+    
+    printLeaderBoardHelper( m_winners, ranking, !REVERSE);
+    printLeaderBoardHelper( m_playerQueue, ranking + m_winners.size(), !REVERSE);
+    printLeaderBoardHelper( m_defeatedPlayers, ranking + m_winners.size() + m_playerQueue.size(), REVERSE);
+
 }
 
 bool Mtmchkin::isGameOver() const

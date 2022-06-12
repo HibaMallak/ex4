@@ -21,7 +21,7 @@ void Wizard::heal(int pointsToHeal)
     }
 }
 
-void Wizard::printInfo()
+void Wizard::operator<<(std::ostream& os)
 {
     printPlayerDetails( std::cout, this->m_name, "Wizard", this->m_level, this->m_force, this->m_HP, this->m_coins);
 }

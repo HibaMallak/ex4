@@ -59,7 +59,7 @@ public:
      * @return
      *      void
     */
-    virtual void printInfo()=0 ; //??? shani
+    virtual void operator<<(std::ostream& os)=0; // pure??
 
 
     /*
@@ -189,7 +189,7 @@ protected:
     int m_force;
     int m_HP;
     int m_coins;
-    const std::string m_playerType;
+    //const std::string m_playerType;//according to piazza they might יורידו נקודות
 
 };
 

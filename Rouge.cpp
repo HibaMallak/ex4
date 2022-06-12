@@ -1,8 +1,8 @@
 #include "Rouge.h"
 
-Rouge::Rouge()
+Rouge::Rouge(const std::string name)
 {
-    m_playerType="Rouge";
+    //Player(name);
 }
 void Rouge::addCoins(int coinsToAdd) 
 {
@@ -13,7 +13,7 @@ void Rouge::addCoins(int coinsToAdd)
     }
 }
 
-void Rouge::printInfo()
+void Rouge::operator<<(std::ostream& os)
 {
-    printPlayerDetails( std::cout, this->m_name, "Rouge", this->m_level, this->m_force, this->m_HP, this->m_coins);
+    printPlayerDetails( os, this->m_name, "Rouge", this->m_level, this->m_force, this->m_HP, this->m_coins);
 }
