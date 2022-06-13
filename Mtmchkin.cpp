@@ -27,7 +27,7 @@ Mtmchkin:: Mtmchkin(const std::string fileName) : m_roundsPlayed(NO_ROUNDS_PLAYE
             printInsertPlayerMessage();
             std::cin >> playerAndJob;
             std::cin >> std::at(playerName.length()+1);
-            } while (check);
+            } while (check); //????
         
             //this->m_playerQueue.pushBack(playerName);
     }
