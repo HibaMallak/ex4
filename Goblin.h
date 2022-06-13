@@ -16,6 +16,7 @@ class Goblin : public Card
         int m_loot = 2;
         int m_damage = 10;
 
+
 };
 
 #endif

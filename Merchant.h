@@ -10,8 +10,8 @@ static const int FORCE_BOOST = 2;
 class Merchant : public Card
 {
     public:
-        Merchant() = default;
-        void applyEncounter(Player& player) const override;
+    Merchant()=default; //????
+    void applyEncounter(Player& player) const override;
 
     private:
         int m_coinsPerPotion = 5;

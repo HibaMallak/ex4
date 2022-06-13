@@ -5,7 +5,7 @@ Wizard::Wizard()
     m_playerType="Wizard";
 }
 
-void Wizard::heal(int pointsToHeal) 
+void Wizard::heal(int pointsToHeal)
 {
     if(pointsToHeal> MIN_NATURAL)
     {

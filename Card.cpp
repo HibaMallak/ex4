@@ -2,9 +2,11 @@
 
 Card::Card(const std::string cardName): m_cardName (cardName)
 {
-    if(cardName.length() > MAX_NAME_LENGTH || cardName.length() )
+    if(cardName.length() > MAX_NAME_LENGTH || cardName.length() || (!is_Valid_card(cardName))  )
     {
         printInvalidName();
+        //THROW DeckFileFormat
+
     }
     else
     {
@@ -18,4 +20,15 @@ Card::Card(const std::string cardName): m_cardName (cardName)
                 printInvalidName();
         }
     }
+}
+
+bool Card:: is_Valid_card (const std::string cardName)
+{
+    if (cardName != "Goblin" && cardName != "Vampire" && cardName != "Dragon" && cardName != "Merchant" &&
+            cardName != "Treasure" &&cardName != "Pitfall" &&cardName != "Barfight" &&cardName != "Fairy")
+    {
+        return false;
+    }
+    return true;
+
 }

@@ -7,7 +7,7 @@ static const bool IS_ROUGE = false;
 class Pitfall : public Card
 {
     public:
-        Pitfall();
+        Pitfall()= default; //???????
          ~Pitfall() = default;
         void applyEncounter(Player& player) const override;
 

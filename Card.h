@@ -25,7 +25,7 @@ public:
      * @return
      *      void
     */
-    virtual void applyEncounter(Player& player) const;
+    virtual void applyEncounter(Player* player) const ; // shani change from & to * >?????????
 
 
     /*
@@ -34,7 +34,7 @@ public:
      * @return
      *      void
     */
-    virtual void printInfo() const;
+    virtual void printInfo() const=0;//??????
 
 
     /*
@@ -43,6 +43,7 @@ public:
     Card(const Card&) = default;
     ~Card() = default;
     Card& operator=(const Card& other) = default;
+    bool is_Valid_card (const std::string cardName);
 
 
 protected:

@@ -12,184 +12,187 @@ static const int COINS_ON_START = 10;
 static const int MAX_NAME_LENGTH = 15;
 
 class Player{
-public:
-    /*
-     * C'tor of Player class
-     *
-     * @param name - The name of the player.
-     * @param maxHP - The maxHP of the player.
-     * @return
-     *      A new instance of Player.
-    */
-    Player(const std::string name);
+        public:
+        /*
+         * C'tor of Player class
+         *
+         * @param name - The name of the player.
+         * @param maxHP - The maxHP of the player.
+         * @return
+         *      A new instance of Player.
+        */
+        Player(const std::string name);
 
 
-    /*
-     * Copy c'tor of Player class
-     *
-     * @param p - The player to copy construct from.
-     * @return
-     *      A copied instance of p.
-    */
-    Player(const Player& p)=default;
+        /*
+         * Copy c'tor of Player class
+         *
+         * @param p - The player to copy construct from.
+         * @return
+         *      A copied instance of p.
+        */
+        Player(const Player& p)=default;
 
 
-    /*
-     * D'tor of Player class
-     *
-     * @return
-     *      Deletes this instance of Player.
-    */
-    ~Player()=default;
+        /*
+         * D'tor of Player class
+         *
+         * @return
+         *      Deletes this instance of Player.
+        */
+        ~Player()=default;
 
 
-    /*
-     * Assignment operator
-     *
-     * @param p - The player to assign from.
-     * @return  
-     *      default
-    */
-    Player& operator=(Player& p) =default;
+        /*
+         * Assignment operator
+         *
+         * @param p - The player to assign from.
+         * @return
+         *      default
+        */
+        Player& operator=(Player& p) =default;
 
 
-    /*
-     * Prints the player info:
-     *
-     * @return
-     *      void
-    */
-    virtual void operator<<(std::ostream& os)=0; // pure??
+        /*
+         * Prints the player info:
+         *
+         * @return
+         *      void
+        */
+        virtual void operator<<(std::ostream& os)=0; // pure??
 
 
-    /*
-     * Increases the level of the player by one.
-     *
-     * @return
-     *      void
-    */
-    void levelUp();
+        /*
+         * Increases the level of the player by one.
+         *
+         * @return
+         *      void
+        */
+        void levelUp();
 
 
-    /*
-     * Returns the level of the player.
-     *
-     * @return
-     *      The level of the player.
-    */
-    int getLevel();
+        /*
+         * Returns the level of the player.
+         *
+         * @return
+         *      The level of the player.
+        */
+        int getLevel();
 
 
-    /*
-     * Increases the force of the player by given amount.
-     *
-     * @param forceToAdd - The given amount to add to the force of the player.
-     * @return
-     *      void
-    */
-    void buff(int forceToAdd);
+        /*
+         * Increases the force of the player by given amount.
+         *
+         * @param forceToAdd - The given amount to add to the force of the player.
+         * @return
+         *      void
+        */
+        void buff(int forceToAdd);
 
 
-    /*
-     * Increases the HP of the player by given amount of points.
-     *
-     * @param printsToHeal - the amount of points to add to the HP of the player.
-     * @return
-     *      void
-    */
-    virtual void heal(int pointsToHeal);
+        /*
+         * Increases the HP of the player by given amount of points.
+         *
+         * @param printsToHeal - the amount of points to add to the HP of the player.
+         * @return
+         *      void
+        */
+        virtual void heal(int pointsToHeal);
 
 
-    /*
-     * Decreases the HP of the player by given amount of points.
-     *
-     * @param damageToDeal - the amount of points to reduce from the HP of the player.
-     * @return
-     *      void
-    */
-    void damage(int damageToDeal);
+        /*
+         * Decreases the HP of the player by given amount of points.
+         *
+         * @param damageToDeal - the amount of points to reduce from the HP of the player.
+         * @return
+         *      void
+        */
+        void damage(int damageToDeal);
 
 
-    /*
-     * Check if the player is knocked out:
-     *
-     * @return
-     *      True if player is knocked out
-     *      False otherwise
-    */
-    bool isKnockedOut();
+        /*
+         * Check if the player is knocked out:
+         *
+         * @return
+         *      True if player is knocked out
+         *      False otherwise
+        */
+        bool isKnockedOut();
 
 
-    /*
-     * Increases the coins of the player by given amount of coins.
-     *
-     * @param coinsToAdd - the amount of coins to add to the coins of the player.
-     * @return
-     *      void
-    */
-    virtual void addCoins(int coinsToAdd);
+        /*
+         * Increases the coins of the player by given amount of coins.
+         *
+         * @param coinsToAdd - the amount of coins to add to the coins of the player.
+         * @return
+         *      void
+        */
+        virtual void addCoins(int coinsToAdd);
 
 
-    /*
-     * Check if player can pay the given amount of coins, and pays if possible.
-     *
-     * @param coinsToPay - the amount of coins to pay.
-     * @return
-     *      True if player can pay
-     *      False otherwise
-    */
-    bool pay(int coinsToPay);
+        /*
+         * Check if player can pay the given amount of coins, and pays if possible.
+         *
+         * @param coinsToPay - the amount of coins to pay.
+         * @return
+         *      True if player can pay
+         *      False otherwise
+        */
+        bool pay(int coinsToPay);
 
 
-    /*
-     * Returns the attack strenth, which is defined as force + level of the player.
-     *
-     * @return
-     *      The attack strenth of the player.
-    */
-    virtual int getAttackStrength();
+        /*
+         * Returns the attack strenth, which is defined as force + level of the player.
+         *
+         * @return
+         *      The attack strenth of the player.
+        */
+        virtual int getAttackStrength();
 
 
-    /*
-     * Returns the player's name.
-     *
-     * @return
-     *      The name of the player.
-    */
-    std::string getPlayerName() const;
+        /*
+         * Returns the player's name.
+         *
+         * @return
+         *      The name of the player.
+        */
+        std::string getPlayerName() const;
 
-    /*
-     * Returns the player's type.
-     *
-     * @return
-     *      The type of the player.
-    */
-    std::string getPlayerType() const;
+        /*
+         * Returns the player's type.
+         *
+         * @return
+         *      The type of the player.
+        */
+        std::string getPlayerType() const;
 
-    /*
-     * Returns the player's coins number.
-     *
-     * @return
-     *      The number of coins the player has.
-    */
-    int getPlayerCoins() const;
+        /*
+         * Returns the player's coins number.
+         *
+         * @return
+         *      The number of coins the player has.
+        */
+        int getPlayerCoins() const;
 
-    /*
-     * Decreases the force of the player by one. 
-     *
-     * @param forceToAdd - The given amount to add to the force of the player.
-     * @return
-     *      void
-    */
-    void lowerForce(int toLower);
+        /*
+         * Decreases the force of the player by one.
+         *
+         * @param forceToAdd - The given amount to add to the force of the player.
+         * @return
+         *      void
+        */
+        void lowerForce(int toLower);
+    static bool is_Valid_name (const std::string player_name); // static?????
+
 
 protected:
-    const std::string m_name;
-    int m_level;
-    int m_force;
-    int m_HP;
-    int m_coins;
-    //const std::string m_playerType;//according to piazza they might יורידו נקודות
+        const std::string m_name;
+        int m_level;
+        int m_force;
+        int m_HP;
+        int m_coins;
+        //const std::string m_playerType;//according to piazza they might יורידו נקודות
+
 
 };
 

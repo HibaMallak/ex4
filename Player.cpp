@@ -2,25 +2,41 @@
 //add playertype whe neccessary
 
 Player::Player(const std::string name) : m_name(name), m_level(FIRST_LEVEL), m_force(DEFAULT_FORCE), m_HP(MAX_HP)
-, m_coins(COINS_ON_START)
+        , m_coins(COINS_ON_START)
+{
+    if(! is_Valid_name(name))
+    {
+        printInvalidName();
+        throw ; ///..........add!!!!!!
+    }
+
+}
+
+
+bool Player:: is_Valid_name (const std::string name)
 {
     if(name.length() > MAX_NAME_LENGTH || name.length() )
     {
-        printInvalidName();
+        return false;
     }
-    else
-    {
-        int len= name.length();
-        char charAtIndex;
 
-        for(int i = MIN_NATURAL; i < len; i++)
+    int len= name.length();
+    char charAtIndex;
+
+    for(int i = MIN_NATURAL; i < len; i++)
+    {
+        charAtIndex = name.at(i);
+        if(charAtIndex < 'A' || charAtIndex > 'z' || (charAtIndex > 'Z' && charAtIndex < 'a'))
         {
-            charAtIndex = name.at(i);
-            if(charAtIndex < 'A' || charAtIndex > 'z' || (charAtIndex > 'Z' && charAtIndex < 'a'))
-                printInvalidName();
+            return false;
+
+            // maybe need other exp than first if????????
         }
     }
+
+    return true;
 }
+
 
 
 void Player::levelUp()
@@ -129,10 +145,10 @@ int Player::getPlayerCoins() const
 }
 
 void Player::lowerForce(int toLower)
+{
+    this->m_force -= toLower;
+    if(this->m_force < MIN_NATURAL)
     {
-        this->m_force -= toLower;
-        if(this->m_force < MIN_NATURAL)
-        {
-            this->m_force == MIN_NATURAL;
-        }
+        this->m_force == MIN_NATURAL;
     }
+}
