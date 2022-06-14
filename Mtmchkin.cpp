@@ -4,10 +4,10 @@
 
 using std::queue;
 
- 
+
 Mtmchkin:: Mtmchkin(const std::string fileName) : m_roundsPlayed(NO_ROUNDS_PLAYED)
 {
-   // int teamSize;
+    // int teamSize;
     std::string cardName, teamSize;
     std::ifstream file(fileName);
 
@@ -35,11 +35,11 @@ Mtmchkin:: Mtmchkin(const std::string fileName) : m_roundsPlayed(NO_ROUNDS_PLAYE
             }
             inputValid = false;
         }
-         catch (...)
-         {
-             printInvalidTeamSize();
-             printEnterTeamSizeMessage();
-         }
+        catch (...)
+        {
+            printInvalidTeamSize();
+            printEnterTeamSizeMessage();
+        }
     }
 
 

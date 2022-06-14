@@ -10,7 +10,7 @@ void Vampire:: win (Player& player) const
 {
         player.levelUp();
         player.addCoins(this->m_loot);
-        printWinBattle(player.getPlayerName(), m_cardName);
+        printWinBattle(player.getPlayerName(), "Vampire");
 }
 
 void Vampire:: loss (Player& player) const
@@ -25,10 +25,13 @@ void Vampire:: loss (Player& player) const
     }
 
     player.lowerForce(this->m_forceToLose);
-    printLossBattle(player.getPlayerName(), m_cardName);
+    printLossBattle(player.getPlayerName(), "Vampire");
 
 }
-void Vampire::printInfo() const 
+
+
+std::ostream&  Vampire:: operator<<(std::ostream& os) const
 {
-    printMonsterDetails(std::cout, this->m_force, this->m_damage, this->m_loot);
+    printCardDetails(os,"Vampire");
+    printMonsterDetails(os, this->m_force, this->m_damage, this->m_loot, !IS_DRAGON);
 }

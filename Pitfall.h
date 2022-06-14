@@ -7,9 +7,14 @@ static const bool IS_ROUGE = false;
 class Pitfall : public Card
 {
     public:
-        Pitfall()= default; //???????
-         ~Pitfall() = default;
-        void applyEncounter(Player& player) const override;
+    Pitfall();
+    ~Pitfall() = default;
+    Pitfall(Pitfall& pitfall)=default;;
+    Pitfall& operator=(Pitfall& pitfall) =default;
+
+    void applyEncounter(Player& player) const override;
+    std::ostream& operator<<(std::ostream& os) const override;
+
 
     private:
       int m_damage = 10;

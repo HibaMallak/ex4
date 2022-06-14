@@ -34,7 +34,7 @@ public:
      * @return
      *      void
     */
-    virtual void printInfo() const=0;//??????
+    virtual std::ostream& operator<<(std::ostream& os) const=0;
 
 
     /*
@@ -43,10 +43,12 @@ public:
     Card(const Card&) = default;
     virtual ~Card() = default;
     Card& operator=(const Card& other) = default;
+
+
     bool is_Valid_card (const std::string cardName);
 
 
-protected:
+    protected:
     const std::string m_cardName;
 
 };

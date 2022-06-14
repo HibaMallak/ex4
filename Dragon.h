@@ -4,14 +4,15 @@
 #include "Card.h"
 
 static const int DNE = 0;
-
 class Dragon : public BattleCards
 {
     public:
         Dragon();
         ~Dragon()=default;
+        Dragon(Dragon& dragon)=default;
+        Dragon& operator=(Dragon& dragon) =default;
 
-        void printInfo() const override;
+        std::ostream& operator<<(std::ostream& os) const override;
         void win (Player& player)const  override;
         void loss (Player& player) const override;
 

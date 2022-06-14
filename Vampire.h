@@ -9,8 +9,10 @@ class Vampire : public BattleCards
     public:
         Vampire();
         ~Vampire()=default;
+        Vampire(Vampire& vampire)=default;
+        Vampire& operator=(Vampire& vampire) =default;
 
-        void printInfo() const override;
+        std::ostream& operator<<(std::ostream& os) const override;
         void win (Player& player) const  override;
         void loss (Player& player) const  override;
 

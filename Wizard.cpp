@@ -1,4 +1,5 @@
 #include "Wizard.h"
+#include "utilities.h"
 
 Wizard::Wizard(std::string name) : Player(name)
 {
@@ -21,7 +22,7 @@ void Wizard::heal(int pointsToHeal)
     }
 }
 
-void Wizard::operator<<(std::ostream& os)
+std::ostream& Wizard::operator<<(std::ostream& os)
 {
-    printPlayerDetails( std::cout, this->m_name, "Wizard", this->m_level, this->m_force, this->m_HP, this->m_coins);
+    printPlayerDetails( os, this->m_name, "Wizard", this->m_level, this->m_force, this->m_HP, this->m_coins);
 }

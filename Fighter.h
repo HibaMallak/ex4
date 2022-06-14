@@ -14,7 +14,7 @@ class Fighter : public Player
          Fighter(Fighter& fighter)=default;;
 
          int getAttackStrength() override;
-         void operator<<(std::ostream& os) override;
+         std::ostream& operator<<(std::ostream& os) override;
 
      };
 

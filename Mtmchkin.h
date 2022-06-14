@@ -29,63 +29,63 @@ static const int MIN_CARD_SIZE = 5;
 
 class Mtmchkin{
 
-        public:
+public:
 
-        /*
-        * C'tor of Mtmchkin class
-        *
-        * @param filename - a file which contains the cards of the deck.
-        * @return
-        *      A new instance of Mtmchkin.
-        */
-        Mtmchkin(const std::string fileName);
+    /*
+    * C'tor of Mtmchkin class
+    *
+    * @param filename - a file which contains the cards of the deck.
+    * @return
+    *      A new instance of Mtmchkin.
+    */
+    Mtmchkin(const std::string fileName);
 
-        //distuctior  ֿ//למחוק אופרטור השמה והעתקה
+    //distuctior
 
-        /*
-        * Play the next Round of the game - according to the instruction in the exercise document.
-        *
-        * @return
-        *      void
-        */
-        void playRound();
+    /*
+    * Play the next Round of the game - according to the instruction in the exercise document.
+    *
+    * @return
+    *      void
+    */
+    void playRound();
 
-        /*
-        * Prints the leaderBoard of the game at a given stage of the game - according to the instruction in the exercise document.
-        *
-        * @return
-        *      void
-        */
-        void printLeaderBoard() const;
+    /*
+    * Prints the leaderBoard of the game at a given stage of the game - according to the instruction in the exercise document.
+    *
+    * @return
+    *      void
+    */
+    void printLeaderBoard() const;
 
-        /*
-        *  Checks if the game ended:
-        *
-        *  @return
-        *          True if the game ended
-        *          False otherwise
-        */
-        bool isGameOver() const;
+    /*
+    *  Checks if the game ended:
+    *
+    *  @return
+    *          True if the game ended
+    *          False otherwise
+    */
+    bool isGameOver() const;
 
-        /*
-        *  Returns the number of rounds played.
-        *
-        *  @return
-        *          int - number of rounds played
-        */
-        int getNumberOfRounds() const;
+    /*
+    *  Returns the number of rounds played.
+    *
+    *  @return
+    *          int - number of rounds played
+    */
+    int getNumberOfRounds() const;
 
-        private:
+private:
 
-        int m_numOfPlayers;
-        int m_roundsPlayed;
-        std::queue<std::unique_ptr <Card>> m_deckCards;
-        std::queue<std::unique_ptr <Player>> m_playerQueue;
-        std::deque<std::unique_ptr <Player>> m_defeatedPlayers;
-        std::queue<std::unique_ptr <Player>> m_winners;
-        bool is_Valid_Player_Class (const std::string player_name);
-        std::unique_ptr<Player> convet_stringToPlayer (const std::string player_job);
-        std::unique_ptr<Card> convet_stringToCard (const std::string card_name);
+    int m_numOfPlayers;
+    int m_roundsPlayed;
+    std::queue<std::unique_ptr <Card>> m_deckCards;
+    std::queue<std::unique_ptr <Player>> m_playerQueue;
+    std::deque<std::unique_ptr <Player>> m_defeatedPlayers;
+    std::queue<std::unique_ptr <Player>> m_winners;
+    bool is_Valid_Player_Class (const std::string player_name);
+    std::unique_ptr<Player> convet_stringToPlayer (const std::string player_job);
+    std::unique_ptr<Card> convet_stringToCard (const std::string card_name);
 
     /*
         * A helper function used in Mtmchkin::printLeaderBoard(). prints the leaderboard for one queue of players.
@@ -95,7 +95,7 @@ class Mtmchkin{
         * @return
         *      void
         */
-        void printLeaderBoardHelper(std::queue<std::unique_ptr <Player>> players, int ranking) const;
+    void printLeaderBoardHelper(std::queue<std::unique_ptr <Player>> players, int ranking) const;
 
 };
 

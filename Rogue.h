@@ -15,7 +15,7 @@ class Rogue : public Player
 
 
         void addCoins(int coinsToAdd) override;
-        void operator<<(std::ostream& os) override;
+        std::ostream& operator<<(std::ostream& os) override;
         };
 
 #endif

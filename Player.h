@@ -1,7 +1,8 @@
 #ifndef EX2_Player_H
 #define EX2_Player_H
-#include "utilities.h"
 #include <cstring>
+#include <iostream>
+
 
 static const int MIN_NATURAL = 0;
 static const int DEFAULT_FORCE = 5;
@@ -59,7 +60,7 @@ class Player{
          * @return
          *      void
         */
-        virtual void operator<<(std::ostream& os)=0; // pure??
+        virtual  std::ostream& operator<<(std::ostream& os)=0; // pure??
 
 
         /*

@@ -1,4 +1,7 @@
 #include "Player.h"
+#include "utilities.h"
+
+
 //add playertype whe neccessary
 
 Player::Player(const std::string name) : m_name(name), m_level(FIRST_LEVEL), m_force(DEFAULT_FORCE), m_HP(MAX_HP)

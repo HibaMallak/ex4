@@ -3,8 +3,8 @@
 #define UNTITLED3_BATTLECARDS_H
 
 #include "Card.h"
+static const bool IS_DRAGON = true;
 
-static const int PLAYER_MAX_HP = 100;
 
 class BattleCards : public Card
 {
@@ -15,6 +15,7 @@ public:
     void applyEncounter(Player& player) const override; // shani change from & to *
     virtual void win (Player& player) const =0;
     virtual void loss (Player& player) const =0;
+    virtual  std::ostream& operator<<(std::ostream& os) const=0;
 
 
 protected:

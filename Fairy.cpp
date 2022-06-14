@@ -1,14 +1,26 @@
 #include "Fairy.h"
+#include "Wizard.h"
+
 Fairy :: Fairy() : Card("Fairy")
 {
 
 }
 void Fairy::applyEncounter(Player& player) const
 {
-    if(player.getPlayerType() != "Wizard")
+    try
     {
-        player.heal(this->m_FairyHP);
-        printFairyMessage(player.getPlayerType() == IS_WIZARD);
+        Wizard& check= dynamic_cast <Wizard&>(player);
     }
-    printFairyMessage(player.getPlayerType() != IS_WIZARD);
+    catch (const std::bad_cast&)
+    {
+        printFairyMessage(!IS_WIZARD);
+    }
+
+    player.heal(this->m_FairyHP);
+    printFairyMessage(IS_WIZARD);
+}
+
+std::ostream&  Fairy:: operator<<(std::ostream& os) const
+{
+    printCardDetails(os,"Fairy");
 }

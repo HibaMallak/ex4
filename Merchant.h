@@ -10,8 +10,14 @@ static const int FORCE_BOOST = 2;
 class Merchant : public Card
 {
     public:
-    Merchant()=default; //????
+    Merchant();
+    ~Merchant() = default;
+    Merchant(Merchant& merchant)=default;;
+    Merchant& operator=(Merchant& merchant) =default;
+
     void applyEncounter(Player& player) const override;
+    std::ostream& operator<<(std::ostream& os) const override;
+
 
     private:
         int m_coinsPerPotion = 5;

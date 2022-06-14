@@ -1,5 +1,10 @@
 #include "Merchant.h"
 
+Merchant :: Merchant() : Card("Merchant")
+{
+
+}
+
 void Merchant::applyEncounter(Player& player) const
 {
     printMerchantInitialMessageForInteractiveEncounter(std::cout, player.getPlayerName(), player.getPlayerCoins());
@@ -10,31 +15,37 @@ void Merchant::applyEncounter(Player& player) const
         printInvalidInput();
         std::cin >> playerChoice;
     }
+
     if(playerChoice == HEALTH_POTION)
     {
-        try
-        {
-            player.pay(this->m_coinsPerPotion);
-            player.heal(this->m_toAdd);
-            paid = this->m_coinsPerPotion;
-        }
-        catch(...)//adding exceptions later
+        if (!player.pay(this->m_coinsPerPotion))
         {
             printMerchantInsufficientCoins(std::cout);
+            printMerchantSummary(std::cout, player.getPlayerName(), playerChoice, paid);
+            return;
+
         }
+
+        player.heal(this->m_toAdd);
+        paid = this->m_coinsPerPotion;
     } 
     if(playerChoice == FORCE_BOOST)
     {
-        try
-        {
-            player.pay(this->m_coinsPerBoost);
-            player.buff(this->m_toAdd);
-            paid = this->m_coinsPerBoost;
-        }
-        catch(...)//adding exceptions later
+        if (!player.pay(this->m_coinsPerBoost))
         {
             printMerchantInsufficientCoins(std::cout);
+            printMerchantSummary(std::cout, player.getPlayerName(), playerChoice, paid);
         }
+
+        player.buff(this->m_toAdd);
+        paid = this->m_coinsPerBoost;
     }
+
     printMerchantSummary(std::cout, player.getPlayerName(), playerChoice, paid);
+}
+
+
+std::ostream& Merchant:: operator<<(std::ostream& os) const
+{
+    printCardDetails(os,"Merchant");
 }

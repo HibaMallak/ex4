@@ -9,7 +9,12 @@ class Barfight : public Card
     public:
     Barfight();
     ~Barfight() = default;
+    Barfight(Barfight& barfight)=default;;
+    Barfight& operator=(Barfight& barfight) =default;
+
+
     void applyEncounter(Player& player) const override;
+    std::ostream& operator<<(std::ostream& os) const override;
 
     private:
         int m_damage = 10;
