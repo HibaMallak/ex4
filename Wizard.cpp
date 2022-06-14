@@ -1,8 +1,8 @@
 #include "Wizard.h"
 
-Wizard::Wizard()
+Wizard::Wizard(std::string name) : Player(name)
 {
-    m_playerType="Wizard";
+
 }
 
 void Wizard::heal(int pointsToHeal)

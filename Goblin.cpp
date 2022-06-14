@@ -1,25 +1,28 @@
 #include "Goblin.h"
 
-Goblin ::Goblin() : m_cardName("Goblin")
+Goblin ::Goblin() : BattleCards("Goblin")
 {
 
 }
-void Goblin::applyEncounter(Player& player) const
-{
-    if(player.getAttackStrength() >= this->m_force)
-    {
-        player.levelUp();
-        player.addCoins(this->m_loot);
-    }
-    else
-    {
-        if (player.getPlayerCoins()-m_damage<=0)
-        {
-            player.damage(player.getPlayerCoins());
 
-        }
-        player.damage(this->m_damage);
+
+
+void Goblin:: win (Player& player) const
+{
+    player.levelUp();
+    player.addCoins(this->m_loot);
+
+}
+
+void Goblin:: loss (Player& player) const
+{
+    if (player.getPlayerCoins()-m_damage<=0)
+    {
+        player.damage(player.getPlayerCoins());
+
     }
+    player.damage(this->m_damage);
+
 }
 
 void Goblin::printInfo() const

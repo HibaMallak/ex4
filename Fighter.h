@@ -6,14 +6,16 @@
 static const int DOUBLE_FORCE = 2;
 
 class Fighter : public Player
-        {
-                public:
-                Fighter();
-        ~Fighter() = default;
-        Fighter& operator=(Rouge& p) =default;
-        int getAttackStrength() override;
-        void operator<<(std::ostream& os) override;
+     {
+     public:
+         Fighter(std::string name);
+         ~Fighter() = default;
+         Fighter& operator=(Fighter& fighter) =default;
+         Fighter(Fighter& fighter)=default;;
 
-        };
+         int getAttackStrength() override;
+         void operator<<(std::ostream& os) override;
+
+     };
 
 #endif

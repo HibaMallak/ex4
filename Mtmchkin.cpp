@@ -59,6 +59,7 @@ Mtmchkin:: Mtmchkin(const std::string fileName) : m_roundsPlayed(NO_ROUNDS_PLAYE
             }
         }
 
+        // add name
         m_playerQueue.push(convet_stringToPlayer(playerAndJob));
     }
 
@@ -129,7 +130,7 @@ std::unique_ptr<Card> Mtmchkin:: convet_stringToCard (const std::string card_nam
 
     if (card_name == "Merchant")
     {
-        return  std::unique_ptr<Card> (new Merchant());
+        return std::unique_ptr<Card> (new Merchant());
     }
     if (card_name == "Treasure")
     {

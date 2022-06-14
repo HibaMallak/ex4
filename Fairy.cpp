@@ -1,5 +1,5 @@
 #include "Fairy.h"
-Fairy :: Fairy() : m_cardName("Fairy")
+Fairy :: Fairy() : Card("Fairy")
 {
 
 }

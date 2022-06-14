@@ -1,6 +1,6 @@
 #include "Barfight.h"
 
-Barfight :: Barfight() : m_cardName("Barfight")
+Barfight :: Barfight() : Card("Barfight")
 {
 
 }

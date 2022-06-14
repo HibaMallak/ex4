@@ -40,7 +40,7 @@ class Player{
          * @return
          *      Deletes this instance of Player.
         */
-        ~Player()=default;
+        virtual ~Player()=default;
 
 
         /*
@@ -157,14 +157,6 @@ class Player{
          *      The name of the player.
         */
         std::string getPlayerName() const;
-
-        /*
-         * Returns the player's type.
-         *
-         * @return
-         *      The type of the player.
-        */
-        std::string getPlayerType() const;
 
         /*
          * Returns the player's coins number.

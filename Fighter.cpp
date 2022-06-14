@@ -1,8 +1,8 @@
 #include "Fighter.h"
 
-Fighter::Fighter()
+Fighter::Fighter(std::string name) : Player(name)
 {
-    m_playerType="Fighter";
+
 }
 
 int Fighter::getAttackStrength()

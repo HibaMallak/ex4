@@ -134,10 +134,6 @@ std::string Player::getPlayerName() const
     return this->m_name;
 }
 
-std::string Player::getPlayerType() const
-{
-    return this->m_playerType;
-}
 
 int Player::getPlayerCoins() const
 {

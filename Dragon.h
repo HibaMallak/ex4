@@ -1,18 +1,19 @@
 #ifndef DRAGON_H
 #define DRAGON_H
-
+#include "BattleCards.h"
 #include "Card.h"
 
 static const int DNE = 0;
-static const int PLAYER_MAX_HP = 100;
-static const bool IS_DRAGON = true;
-class Dragon : public Card
+
+class Dragon : public BattleCards
 {
     public:
-        void applyEncounter(Player& player) const override; 
-        void printInfo() const override;
         Dragon();
         ~Dragon()=default;
+
+        void printInfo() const override;
+        void win (Player& player)const  override;
+        void loss (Player& player) const override;
 
     private:
         int m_force = 25;

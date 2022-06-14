@@ -39,6 +39,8 @@ class Mtmchkin{
         */
         Mtmchkin(const std::string fileName);
 
+        //distuctior
+
         /*
         * Play the next Round of the game - according to the instruction in the exercise document.
         *

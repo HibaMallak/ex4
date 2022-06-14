@@ -25,7 +25,7 @@ public:
      * @return
      *      void
     */
-    virtual void applyEncounter(Player* player) const ; // shani change from & to * >?????????
+    virtual void applyEncounter(Player& player) const=0 ; // shani change from & to * >?????????
 
 
     /*
@@ -41,7 +41,7 @@ public:
      * Here we are explicitly telling the compiler to use the default methods
     */
     Card(const Card&) = default;
-    ~Card() = default;
+    virtual ~Card() = default;
     Card& operator=(const Card& other) = default;
     bool is_Valid_card (const std::string cardName);
 

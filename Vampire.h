@@ -1,25 +1,25 @@
 #ifndef VAMPIRE_H
 #define VAMPIRE_H
 
+#include "BattleCards.h"
 #include "Card.h"
 
-static const int PLAYER_MAX_HP = 100;
-static const std::string MONSTER_NAME = "Vampire";
-
-class Vampire : public Card
+class Vampire : public BattleCards
 {
     public:
         Vampire();
         ~Vampire()=default;
 
-        void applyEncounter(Player& player) const override;
-        void printInfo() const override; 
+        void printInfo() const override;
+        void win (Player& player) const  override;
+        void loss (Player& player) const  override;
 
     private:
       int m_force = 10;
       int m_loot = 2;
       int m_damage = 10;
       int m_forceToLose = 1;
+
 
 };
 

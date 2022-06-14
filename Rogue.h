@@ -7,10 +7,12 @@ static const int DOUBLE_COINS = 2;
 
 class Rogue : public Player
         {
-                public:
-         Rogue();
+        public:
+         Rogue(std::string name);
+         Rogue(Rogue& rogue)=default;;
         ~Rogue() = default;
-         Rogue& operator=(Rogue& p) =default;
+         Rogue& operator=(Rogue& rogue) =default;
+
 
         void addCoins(int coinsToAdd) override;
         void operator<<(std::ostream& os) override;

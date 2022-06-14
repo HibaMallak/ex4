@@ -2,14 +2,17 @@
 #define GOBLIN_H
 
 #include "Card.h"
+#include "BattleCards.h"
 
-static const std::string MONSTER_NAME = "Goblin";
-class Goblin : public Card
+class Goblin : public BattleCards
 {
     public:
         Goblin();
-        void applyEncounter(Player& player) const override; 
+        ~Goblin()=default;
+
         void printInfo() const override;
+        void win (Player& player) const override;
+        void loss (Player& player) const override;
 
     private:
         int m_force = 6;

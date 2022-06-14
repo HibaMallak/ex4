@@ -1,8 +1,8 @@
 #include "Rogue.h"
 
-Rogue::Rogue()
+Rogue::Rogue(std::string name) : Player(name)
 {
-    //Player(name);
+
 }
 void Rogue::addCoins(int coinsToAdd)
 {
@@ -15,5 +15,5 @@ void Rogue::addCoins(int coinsToAdd)
 
 void Rogue::operator<<(std::ostream& os)
 {
-    printPlayerDetails( os, this->m_name, "Rogue", this->m_level, this->m_force, this->m_HP, this->m_coins);
+    printPlayerDetails(os, this->m_name, "Rogue", this->m_level, this->m_force, this->m_HP, this->m_coins);
 }

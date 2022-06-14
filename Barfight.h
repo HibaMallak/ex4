@@ -9,7 +9,7 @@ class Barfight : public Card
     public:
     Barfight();
     ~Barfight() = default;
-        void applyEncounter(Player& player) const override;
+    void applyEncounter(Player& player) const override;
 
     private:
         int m_damage = 10;
