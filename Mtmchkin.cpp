@@ -4,7 +4,7 @@
 
 using std::queue;
 
-
+ 
 Mtmchkin:: Mtmchkin(const std::string fileName) : m_roundsPlayed(NO_ROUNDS_PLAYED)
 {
    // int teamSize;
@@ -59,18 +59,17 @@ Mtmchkin:: Mtmchkin(const std::string fileName) : m_roundsPlayed(NO_ROUNDS_PLAYE
             }
         }
 
-        // add name
         m_playerQueue.push(convet_stringToPlayer(playerAndJob));
+
     }
 
 
 }
+
 bool Mtmchkin:: is_Valid_Player_Class (const std::string player_name)
 {
     int pos = player_name.find(" ");
-
     std::string sub = player_name.substr(0,pos);
-
 
     if (Player:: is_Valid_name(sub))
     {
@@ -93,21 +92,22 @@ bool Mtmchkin:: is_Valid_Player_Class (const std::string player_name)
 std::unique_ptr<Player> Mtmchkin:: convet_stringToPlayer (const std::string player_job)
 {
     int pos = player_job.find(" ");
+    std::string name = player_job.substr(0, pos);
+    std::string job = player_job.substr(pos+1);
 
-    std::string sub = player_job.substr(pos+1);
-
-    if (sub == "Fighter")
+    if (job == "Fighter")
     {
-        return std::unique_ptr<Player> (new Fighter());
-    }
-    if ( sub == "Wizard")
-    {
-        return std::unique_ptr<Player> (new Wizard());
+        return std::unique_ptr<Player> (new Fighter(name));
     }
 
-    if (sub == "Rogue")
+    if (job == "Wizard")
     {
-        return std::unique_ptr<Player> (new Rogue());
+        return std::unique_ptr<Player> (new Wizard(name));
+    }
+
+    if (job == "Rogue")
+    {
+        return std::unique_ptr<Player> (new Rogue(name));
     }
 }
 
@@ -156,8 +156,8 @@ void Mtmchkin::playRound()
     for(int i = 0; i < m_playerQueue.size(); ++i)
     {
 
-        std::unique_ptr<Player> currentPlayer = m_playerQueue.front();/// ptr dont work???
-        std::unique_ptr<Card> currentCard = m_deckCards.front();
+        std::unique_ptr<Player> currentPlayer = std::move(m_playerQueue.front());/// ptr dont work???
+        std::unique_ptr<Card> currentCard = std::move(m_deckCards.front());
 
         printTurnStartMessage(currentPlayer->getPlayerName());
         currentCard->applyEncounter(currentPlayer);
@@ -186,22 +186,9 @@ void Mtmchkin::playRound()
     ++m_roundsPlayed;
 }
 
-void Mtmchkin::printLeaderBoardHelper(const queue<Player*> players, int ranking, bool reverse) const
+void Mtmchkin::printLeaderBoardHelper(const queue<std::unique_ptr <Player>> players, int ranking) const
 {
-    queue<Player*> current = players;
-    if(reverse)
-    {
-        Player* reversedQueue [players.size()];
-        for(int i = 0; i < players.size(); ++i)
-        {
-            reversedQueue[i] = current.front();
-            current.pop();
-        }
-        for(int i = players.size()-1; i >= 0 ; ++i)
-        {
-            current.push(reversedQueue[i]);
-        }
-    }
+    queue<std::unique_ptr <Player>> current = players;
 
     for(int i = 0; i < players.size(); ++i)
     {
@@ -215,9 +202,14 @@ void Mtmchkin::printLeaderBoard() const
     printLeaderBoardStartMessage();
     int ranking = FIRST_RANK;
 
-    printLeaderBoardHelper( m_winners, ranking, !REVERSE);
-    printLeaderBoardHelper( m_playerQueue, ranking + m_winners.size(), !REVERSE);
-    printLeaderBoardHelper( m_defeatedPlayers, ranking + m_winners.size() + m_playerQueue.size(), REVERSE);
+    printLeaderBoardHelper( m_winners, ranking);
+    printLeaderBoardHelper( m_playerQueue, ranking + m_winners.size());
+    for(int i = 0; i < m_defeatedPlayers.size(); ++i)
+    {
+        printPlayerLeaderBoard(ranking +i, m_defeatedPlayers.back());
+
+    }
+    printLeaderBoardHelper( m_defeatedPlayers, ranking + m_winners.size() + m_playerQueue.size());
 
 }
 

@@ -3,8 +3,10 @@
 #include "Card.h"
 #include "Player.h"
 #include <iostream>
+#include <memory>
 #include <string.h>
 #include <queue>
+#include <deque>
 #include "Fighter.h"
 #include "Wizard.h"
 #include "Rogue.h"
@@ -17,7 +19,6 @@
 #include "Vampire.h"
 #include "Goblin.h"
 
-static const bool REVERSE = true;
 static const bool GAME_OVER = true;
 static const int FIRST_RANK = 1;
 static const int NO_ROUNDS_PLAYED = 0;
@@ -80,9 +81,8 @@ class Mtmchkin{
         int m_roundsPlayed;
         std::queue<std::unique_ptr <Card>> m_deckCards;
         std::queue<std::unique_ptr <Player>> m_playerQueue;
-        std::queue<std::unique_ptr <Player>> m_defeatedPlayers;
+        std::deque<std::unique_ptr <Player>> m_defeatedPlayers;
         std::queue<std::unique_ptr <Player>> m_winners;
-
         bool is_Valid_Player_Class (const std::string player_name);
         std::unique_ptr<Player> convet_stringToPlayer (const std::string player_job);
         std::unique_ptr<Card> convet_stringToCard (const std::string card_name);
@@ -92,11 +92,10 @@ class Mtmchkin{
         *
         * @param players - the queue which contains the players needed to print thier leaderboard.
         * @param ranking - the rank of the first player in currentQueue.
-        * @param reverse - if true, will print the elements in opposite way.
         * @return
         *      void
         */
-        void printLeaderBoardHelper(std::queue<Player*> players, int ranking, bool reverse) const;
+        void printLeaderBoardHelper(std::queue<std::unique_ptr <Player>> players, int ranking) const;
 
 };
 
