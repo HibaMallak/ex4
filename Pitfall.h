@@ -9,11 +9,11 @@ class Pitfall : public Card
     public:
     Pitfall();
     ~Pitfall() = default;
-    Pitfall(Pitfall& pitfall)=default;;
-    Pitfall& operator=(Pitfall& pitfall) =default;
+    Pitfall(Pitfall& pitfall) = default;
+    Pitfall& operator=(Pitfall& pitfall) = default;
 
     void applyEncounter(Player& player) const override;
-    std::ostream& operator<<(std::ostream& os) const override;
+    std::ostream& printInfo(std::ostream& os) const override;
 
 
     private:

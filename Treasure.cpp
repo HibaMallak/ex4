@@ -12,7 +12,8 @@ void Treasure::applyEncounter(Player& player) const
 }
 
 
-std::ostream&  Treasure:: operator<<(std::ostream& os) const
+std::ostream&  Treasure:: printInfo(std::ostream& os) const
 {
-    printCardDetails(os,"Treasure");
+    printCardDetails(os, "Treasure");
+    return os;
 }

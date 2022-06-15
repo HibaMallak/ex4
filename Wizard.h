@@ -11,11 +11,11 @@ class Wizard : public Player
 
        Wizard(std::string name);
        ~Wizard() = default;
-       Wizard(Wizard& wizard)=default;;
-       Wizard& operator=(Wizard& wizard) =default;
+       Wizard(Wizard& wizard) = default;
+       Wizard& operator=(Wizard& wizard) = default;
 
         void heal(int pointsToHeal) override;
-        std::ostream& operator<<(std::ostream& os) override;
+        std::ostream& printPlayerInfo(std::ostream& os) const override;
     };
 
 #endif

@@ -2,6 +2,7 @@
 #define Card_H
 
 #include <cstring>
+#include <memory>
 #include "Player.h"
 #include "utilities.h"
 
@@ -29,29 +30,31 @@ public:
 
 
     /*
-     * Prints the card info:
-     *
-     * @return
-     *      void
-    */
-    virtual std::ostream& operator<<(std::ostream& os) const=0;
-
-
-    /*
      * Here we are explicitly telling the compiler to use the default methods
     */
     Card(const Card&) = default;
     virtual ~Card() = default;
     Card& operator=(const Card& other) = default;
-
-
+    
+    /*
+     * Prints the card info:
+     *
+     * @return
+     *      void
+    */
+    virtual std::ostream& printInfo(std::ostream& os) const =0;
+    friend std::ostream& operator << (std::ostream& os, const Card& card);
     bool is_Valid_card (const std::string cardName);
 
 
     protected:
     const std::string m_cardName;
 
-};
+}
+
+std::ostream& operator << (std::ostream& os, const Card& card);
+
+;
 
 
 #endif 

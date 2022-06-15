@@ -8,12 +8,12 @@ Wizard::Wizard(std::string name) : Player(name)
 
 void Wizard::heal(int pointsToHeal)
 {
-    if(pointsToHeal> MIN_NATURAL)
+    if(pointsToHeal > MIN_NATURAL)
     {
         pointsToHeal *= DOUBLE_HP;
-        if(this->m_HP+ pointsToHeal > MAX_HP)
+        if(this->m_HP + pointsToHeal > MAX_HP)
         {
-            this->m_HP= MAX_HP;
+            this->m_HP = MAX_HP;
         }
         else
         {
@@ -22,7 +22,8 @@ void Wizard::heal(int pointsToHeal)
     }
 }
 
-std::ostream& Wizard::operator<<(std::ostream& os)
+std::ostream& Wizard::printPlayerInfo(std::ostream& os) const
 {
     printPlayerDetails( os, this->m_name, "Wizard", this->m_level, this->m_force, this->m_HP, this->m_coins);
+    return os;
 }

@@ -8,11 +8,11 @@ class Vampire : public BattleCards
 {
     public:
         Vampire();
-        ~Vampire()=default;
-        Vampire(Vampire& vampire)=default;
-        Vampire& operator=(Vampire& vampire) =default;
+        ~Vampire() = default;
+        Vampire(Vampire& vampire) = default;
+        Vampire& operator=(Vampire& vampire) = default;
 
-        std::ostream& operator<<(std::ostream& os) const override;
+        std::ostream& printInfo(std::ostream& os) override;
         void win (Player& player) const  override;
         void loss (Player& player) const  override;
 

@@ -15,7 +15,7 @@ void Vampire:: win (Player& player) const
 
 void Vampire:: loss (Player& player) const
 {
-    if (player.getPlayerCoins()-m_damage<=0)
+    if (player.getPlayerCoins() - m_damage <= 0)
     {
         player.damage(player.getPlayerCoins());
     }
@@ -29,9 +29,9 @@ void Vampire:: loss (Player& player) const
 
 }
 
-
-std::ostream&  Vampire:: operator<<(std::ostream& os) const
+std::ostream& Vampire::printInfo(std::ostream& os)
 {
-    printCardDetails(os,"Vampire");
+    printCardDetails(os, "Vampire");
     printMonsterDetails(os, this->m_force, this->m_damage, this->m_loot, !IS_DRAGON);
+    return os;
 }

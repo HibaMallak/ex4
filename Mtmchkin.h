@@ -2,6 +2,7 @@
 #define MTMCHKIN_H_
 #include "Card.h"
 #include "Player.h"
+#include "Exception.h"
 #include <iostream>
 #include <memory>
 #include <string.h>
@@ -19,6 +20,7 @@
 #include "Vampire.h"
 #include "Goblin.h"
 
+static const bool REVERSE = true;
 static const bool GAME_OVER = true;
 static const int FIRST_RANK = 1;
 static const int NO_ROUNDS_PLAYED = 0;
@@ -40,7 +42,11 @@ public:
     */
     Mtmchkin(const std::string fileName);
 
-    //distuctior
+
+    Mtmchkin(const Mtmchkin& game) = delete;
+    Mtmchkin& operator=(Mtmchkin& game) = delete;
+
+    ~Mtmchkin() = default;
 
     /*
     * Play the next Round of the game - according to the instruction in the exercise document.
@@ -80,12 +86,14 @@ private:
     int m_numOfPlayers;
     int m_roundsPlayed;
     std::queue<std::unique_ptr <Card>> m_deckCards;
-    std::queue<std::unique_ptr <Player>> m_playerQueue;
+    std::deque<std::unique_ptr <Player>> m_playerQueue;
     std::deque<std::unique_ptr <Player>> m_defeatedPlayers;
-    std::queue<std::unique_ptr <Player>> m_winners;
+    std::deque<std::unique_ptr <Player>> m_winners;
+
     bool is_Valid_Player_Class (const std::string player_name);
     std::unique_ptr<Player> convet_stringToPlayer (const std::string player_job);
     std::unique_ptr<Card> convet_stringToCard (const std::string card_name);
+
 
     /*
         * A helper function used in Mtmchkin::printLeaderBoard(). prints the leaderboard for one queue of players.

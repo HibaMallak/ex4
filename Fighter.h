@@ -8,13 +8,13 @@ static const int DOUBLE_FORCE = 2;
 class Fighter : public Player
      {
      public:
-         Fighter(std::string name);
-         ~Fighter() = default;
-         Fighter& operator=(Fighter& fighter) =default;
-         Fighter(Fighter& fighter)=default;;
+        Fighter(std::string name);
+        ~Fighter() = default;
+        Fighter& operator=(Fighter& fighter) = default;
+        Fighter(Fighter& fighter) = default;
 
-         int getAttackStrength() override;
-         std::ostream& operator<<(std::ostream& os) override;
+        int getAttackStrength() override;
+        std::ostream& printPlayerInfo(std::ostream& os) const override;
 
      };
 

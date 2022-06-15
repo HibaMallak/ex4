@@ -10,7 +10,7 @@ void Barfight::applyEncounter(Player& player) const
 {
     try
     {
-        Fighter& check= dynamic_cast <Fighter&>(player);
+        Fighter& check = dynamic_cast <Fighter&>(player);
     }
     catch (const std::bad_cast&)
     {
@@ -21,7 +21,8 @@ void Barfight::applyEncounter(Player& player) const
     printBarfightMessage(IS_FIGHTER);
 }
 
-std::ostream& Barfight:: operator<<(std::ostream& os) const
+std::ostream& Barfight::printInfo(std::ostream& os) const
 {
-    printCardDetails(os,"Barfight");
+    printCardDetails(os, "Barfight");
+    return os;
 }

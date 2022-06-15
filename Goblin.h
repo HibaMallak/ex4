@@ -8,11 +8,11 @@ class Goblin : public BattleCards
 {
     public:
         Goblin();
-        ~Goblin()=default;
-        Goblin(Goblin& goblin)=default;
-        Goblin& operator=(Goblin& goblin) =default;
+        ~Goblin() = default;
+        Goblin(Goblin& goblin) = default;
+        Goblin& operator=(Goblin& goblin) = default;
 
-        std::ostream& operator<<(std::ostream& os) const override;
+        std::ostream& printInfo(std::ostream& os) const override;
         void win (Player& player) const override;
         void loss (Player& player) const override;
 

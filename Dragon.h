@@ -8,11 +8,11 @@ class Dragon : public BattleCards
 {
     public:
         Dragon();
-        ~Dragon()=default;
-        Dragon(Dragon& dragon)=default;
-        Dragon& operator=(Dragon& dragon) =default;
+        ~Dragon() = default;
+        Dragon(Dragon& dragon) = default;
+        Dragon& operator=(Dragon& dragon) = default;
 
-        std::ostream& operator<<(std::ostream& os) const override;
+        std::ostream& printInfo(std::ostream& os) const override;
         void win (Player& player)const  override;
         void loss (Player& player) const override;
 

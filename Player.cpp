@@ -143,6 +143,11 @@ int Player::getPlayerCoins() const
     return this->m_coins;
 }
 
+int Player::getPlayerHP() const
+{
+    return this->m_HP;
+}
+
 void Player::lowerForce(int toLower)
 {
     this->m_force -= toLower;

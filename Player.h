@@ -60,7 +60,7 @@ class Player{
          * @return
          *      void
         */
-        virtual  std::ostream& operator<<(std::ostream& os)=0; // pure??
+        virtual  std::ostream& printPlayerInfo(std::ostream& os)=0; // pure??
 
 
         /*
@@ -167,6 +167,8 @@ class Player{
         */
         int getPlayerCoins() const;
 
+        int getPlayerHP() const;
+
         /*
          * Decreases the force of the player by one.
          *
@@ -175,7 +177,7 @@ class Player{
          *      void
         */
         void lowerForce(int toLower);
-    static bool is_Valid_name (const std::string player_name); // static?????
+        static bool is_Valid_name (const std::string player_name); // static?????
 
 
 protected:
@@ -187,7 +189,12 @@ protected:
         //const std::string m_playerType;//according to piazza they might יורידו נקודות
 
 
-};
+}
+
+std::ostream& operator << (std::ostream& os, const Card& card);
+;
+
+
 
 
 #endif

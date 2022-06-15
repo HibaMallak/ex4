@@ -7,12 +7,12 @@ class Treasure : public Card
 {
     public:
         Treasure();
-        ~Treasure()= default;
-        Treasure(Treasure& treasure)=default;
-        Treasure& operator=(Treasure& treasure) =default;
+        ~Treasure() = default;
+        Treasure(Treasure& treasure) = default;
+        Treasure& operator=(Treasure& treasure) = default;
 
     void applyEncounter(Player& player) const override;
-    std::ostream& operator<<(std::ostream& os) const override;
+    std::ostream& printInfo(std::ostream& os) const override;
 
 
     private:

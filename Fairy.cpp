@@ -20,7 +20,8 @@ void Fairy::applyEncounter(Player& player) const
     printFairyMessage(IS_WIZARD);
 }
 
-std::ostream&  Fairy:: operator<<(std::ostream& os) const
+std::ostream& Fairy::printInfo(std::ostream& os) const
 {
-    printCardDetails(os,"Fairy");
+    printCardDetails(os, "Fairy");
+    return os;
 }

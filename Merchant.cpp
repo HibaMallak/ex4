@@ -8,12 +8,13 @@ Merchant :: Merchant() : Card("Merchant")
 void Merchant::applyEncounter(Player& player) const
 {
     printMerchantInitialMessageForInteractiveEncounter(std::cout, player.getPlayerName(), player.getPlayerCoins());
-    int playerChoice, paid = 0;
-    std::cin >> playerChoice;
+    int paid = 0;
+    char playerChoice; //maybe add the isdigit and isalpha??
+    std::getline(cin, playerChoice);    //        std::cin >> playerChoice;
     while(playerChoice < LEAVE || playerChoice > FORCE_BOOST)
     {
         printInvalidInput();
-        std::cin >> playerChoice;
+        std::getline(cin, playerChoice);//        std::cin >> playerChoice;
     }
 
     if(playerChoice == HEALTH_POTION)
@@ -41,11 +42,12 @@ void Merchant::applyEncounter(Player& player) const
         paid = this->m_coinsPerBoost;
     }
 
-    printMerchantSummary(std::cout, player.getPlayerName(), playerChoice, paid);
+    printMerchantSummary(std::cout, player.getPlayerName(), playerChoice - LEAVE, paid);
 }
 
 
-std::ostream& Merchant:: operator<<(std::ostream& os) const
+std::ostream& Merchant:: printInfo(std::ostream& os) const
 {
-    printCardDetails(os,"Merchant");
+    printCardDetails(os, "Merchant");
+    return os;
 }

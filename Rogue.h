@@ -9,13 +9,13 @@ class Rogue : public Player
         {
         public:
          Rogue(std::string name);
-         Rogue(Rogue& rogue)=default;;
+         Rogue(Rogue& rogue) = default;;
         ~Rogue() = default;
-         Rogue& operator=(Rogue& rogue) =default;
+         Rogue& operator=(Rogue& rogue) = default;
 
 
         void addCoins(int coinsToAdd) override;
-        std::ostream& operator<<(std::ostream& os) override;
+        std::ostream& printPlayerInfo(std::ostream& os) const override;
         };
 
 #endif

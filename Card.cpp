@@ -36,3 +36,8 @@ bool Card:: is_Valid_card (const std::string cardName)
      */
 
 }
+
+std::ostream& operator << (std::ostream& os, const Card& card)
+{
+    return card.printInfo(os);
+}
