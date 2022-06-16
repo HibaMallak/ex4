@@ -58,9 +58,18 @@ class Player{
          * Prints the player info:
          *
          * @return
-         *      void
+         *      std::ostream&
         */
-        virtual  std::ostream& printPlayerInfo(std::ostream& os)=0; // pure??
+        virtual std::ostream& printPlayerInfo(std::ostream& os) const=0;
+
+    /*
+    * operator << prints by calling printPlayerInfov :
+    *
+    * @return
+    *      std::ostream&
+    */
+        friend std::ostream& operator << (std::ostream& os, const Player& Player);
+
 
 
         /*
@@ -189,10 +198,9 @@ protected:
         //const std::string m_playerType;//according to piazza they might יורידו נקודות
 
 
-}
+};
 
-std::ostream& operator << (std::ostream& os, const Card& card);
-;
+
 
 
 

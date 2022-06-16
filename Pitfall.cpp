@@ -25,7 +25,7 @@ void Pitfall::applyEncounter(Player& player) const
 }
 
 
-std::ostream& Pitfall::printInfo(std::ostream& os)
+std::ostream& Pitfall::printInfo(std::ostream& os) const
 {
     printCardDetails(os, "Pitfall");
     return os;

@@ -13,6 +13,6 @@ int Fighter::getAttackStrength()
 
 std::ostream& Fighter::printPlayerInfo(std::ostream& os) const
 {
-    printPlayerDetails(o , this->m_name, "Fighter", this->m_level, this->m_force, this->m_HP, this->m_coins);
+    printPlayerDetails(os , this->m_name, "Fighter", this->m_level, this->m_force, this->m_HP, this->m_coins);
     return os;
 }

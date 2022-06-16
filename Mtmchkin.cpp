@@ -17,7 +17,7 @@ Mtmchkin:: Mtmchkin(const std::string fileName) : m_roundsPlayed(NO_ROUNDS_PLAYE
 
     if (m_deckCards.size() < MIN_CARD_SIZE)
     {
-        throw Exception::DeckFileInvalidSize.what();
+        throw Exception::DeckFileInvalidSize();
     }
 
     printStartGameMessage();
@@ -29,7 +29,7 @@ Mtmchkin:: Mtmchkin(const std::string fileName) : m_roundsPlayed(NO_ROUNDS_PLAYE
         try {
             if (!std::getline(std::cin, teamSize) || std::stoi(teamSize) < MIN_TEAM_SIZE || std::stoi(teamSize) > MAX_TEAM_SIZE)
             {
-                throw Exception::InvalidTeamSize();
+                throw Exception::DeckFileInvalidSize();
             }
             inputValid = false;
         }

@@ -15,6 +15,12 @@ Player::Player(const std::string name) : m_name(name), m_level(FIRST_LEVEL), m_f
 
 }
 
+std::ostream& operator<< (std::ostream& os, const Player& player)
+{
+    return player.printPlayerInfo(os);
+}
+
+
 
 bool Player:: is_Valid_name (const std::string name)
 {

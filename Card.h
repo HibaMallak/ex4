@@ -46,15 +46,10 @@ public:
     friend std::ostream& operator << (std::ostream& os, const Card& card);
     bool is_Valid_card (const std::string cardName);
 
-
-    protected:
+protected:
     const std::string m_cardName;
 
-}
-
-std::ostream& operator << (std::ostream& os, const Card& card);
-
-;
+};
 
 
 #endif 

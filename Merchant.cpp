@@ -1,4 +1,7 @@
 #include "Merchant.h"
+#include <fstream>
+#include <iostream>
+#include <string>
 
 Merchant :: Merchant() : Card("Merchant")
 {
@@ -9,12 +12,13 @@ void Merchant::applyEncounter(Player& player) const
 {
     printMerchantInitialMessageForInteractiveEncounter(std::cout, player.getPlayerName(), player.getPlayerCoins());
     int paid = 0;
-    char playerChoice; //maybe add the isdigit and isalpha??
-    std::getline(cin, playerChoice);    //        std::cin >> playerChoice;
+    int playerChoice; //maybe add the isdigit and isalpha??
+     std::cin >> playerChoice;
+
     while(playerChoice < LEAVE || playerChoice > FORCE_BOOST)
     {
         printInvalidInput();
-        std::getline(cin, playerChoice);//        std::cin >> playerChoice;
+        std::cin >> playerChoice;//        std::cin >> playerChoice;
     }
 
     if(playerChoice == HEALTH_POTION)

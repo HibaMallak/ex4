@@ -15,7 +15,7 @@ public:
     void applyEncounter(Player& player) const override; // shani change from & to *
     virtual void win (Player& player) const =0;
     virtual void loss (Player& player) const =0;
-    virtual  std::ostream& operator<<(std::ostream& os) const=0;
+    virtual std::ostream& printInfo(std::ostream& os) const = 0;
 
 
 protected:

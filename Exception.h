@@ -5,32 +5,52 @@
 class Exception
 {
 
-    class DeckFileNotFound
+    public:
+
+    class DeckFileNotFound : public std::exception
     {
-        void what()
+        DeckFileNotFound()=default;
+        virtual ~DeckFileNotFound()=default;
+
+        const char* what() const noexcept override
         {
-            std::cout <<"Deck File Error: File not found"<<std::endl;
+            return const_cast<char*>("Deck File Error: File not found");
         }
     };
 
-    class DeckFileFormatError
+    class DeckFileFormatError : public std::exception
     {
-        void what(int lineNumberInDeckfile)
+    public:
+        DeckFileFormatError(int line) : m_lineError("line")
         {
-            std::cout <<"Deck File Error: File format error in line "<<lineNumberInDeckfile<<std::endl;
+
+        };
+
+        virtual ~DeckFileFormatError()=default;
+
+        const char* what() const noexcept override
+        {
+            std::string output= "Deck File Error: File format error in line "+ m_lineError;
+            return const_cast<char*>(output.c_str());
         }
+
+    private:
+        std::string m_lineError;
     };
 
-    class DeckFileInvalidSize
+    class DeckFileInvalidSize : public std::exception
     {
-        void what()
-        {
-            std::cout <<"Deck File Error: Deck size is invalid"<<std::endl;
-        }
-    };
 
-    class InvalidTeamSize{};
-    
+        const char* what() const noexcept override
+        {
+             return const_cast<char*>("Deck File Error: Deck size is invalid");
+        }
+
+    public:
+        DeckFileInvalidSize()=default;
+
+        virtual ~DeckFileInvalidSize()=default;
+    };
 };
 
 #endif 
