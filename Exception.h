@@ -9,13 +9,16 @@ class Exception
 
     class DeckFileNotFound : public std::exception
     {
-        DeckFileNotFound()=default;
-        virtual ~DeckFileNotFound()=default;
 
         const char* what() const noexcept override
         {
             return const_cast<char*>("Deck File Error: File not found");
         }
+
+    public:
+        DeckFileNotFound()=default;
+
+        virtual ~DeckFileNotFound()=default;
     };
 
     class DeckFileFormatError : public std::exception

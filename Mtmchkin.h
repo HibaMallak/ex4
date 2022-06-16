@@ -8,18 +8,18 @@
 #include <string.h>
 #include <queue>
 #include <deque>
-/*
-#include "Fighter.h"
-#include "Wizard.h"
-#include "Rogue.h"
-#include "Fairy.h"
-#include "Barfight.h"
-#include "Pitfall.h"
-#include "Treasure.h"
-#include "Merchant.h"
-#include "Dragon.h"
-#include "Vampire.h"
-#include "Goblin.h" */
+
+#include "Players/Fighter.h"
+#include "Players/Wizard.h"
+#include "Players/Rogue.h"
+#include "Cards/Fairy.h"
+#include "Cards/Barfight.h"
+#include "Cards/Pitfall.h"
+#include "Cards/Treasure.h"
+#include "Cards/Merchant.h"
+#include "Cards/Dragon.h"
+#include "Cards/Vampire.h"
+#include "Cards/Goblin.h"
 
 static const bool GAME_OVER = true;
 static const int FIRST_RANK = 1;

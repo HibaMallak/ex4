@@ -3,7 +3,7 @@
 
 #include <cstring>
 #include <memory>
-#include "Players/Player.h""
+#include "Players/Player.h"
 #include "utilities.h"
 
 class Card {
@@ -48,7 +48,6 @@ public:
 
 protected:
     const std::string m_cardName;
-
 };
 
 

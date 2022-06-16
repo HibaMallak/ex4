@@ -17,17 +17,16 @@ void Dragon:: win (Player& player) const
 void Dragon:: loss (Player& player) const
 {
     player.damage(player.getPlayerHP());
-    
+    printLossBattle(player.getPlayerName(),"Dragon");
+
     /*
     if (player.getPlayerCoins()-m_damage<=0)
     {
         player.damage(player.getPlayerCoins());
- 
     }
     player.damage(this->m_damage);
-    printLossBattle(player.getPlayerName(),"Dragon");
+
 */
-    //how getting out the player
 
 }
 
