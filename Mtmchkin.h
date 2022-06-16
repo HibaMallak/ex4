@@ -1,13 +1,14 @@
 #ifndef MTMCHKIN_H_
 #define MTMCHKIN_H_
-#include "Card.h"
-#include "Player.h"
+#include "Cards/Card.h"
+#include "Players/Player.h"
 #include "Exception.h"
 #include <iostream>
 #include <memory>
 #include <string.h>
 #include <queue>
 #include <deque>
+/*
 #include "Fighter.h"
 #include "Wizard.h"
 #include "Rogue.h"
@@ -18,7 +19,7 @@
 #include "Merchant.h"
 #include "Dragon.h"
 #include "Vampire.h"
-#include "Goblin.h"
+#include "Goblin.h" */
 
 static const bool GAME_OVER = true;
 static const int FIRST_RANK = 1;
@@ -103,7 +104,7 @@ private:
         * @return
         *      void
         */
-    void printLeaderBoardHelper(std::queue<std::unique_ptr <Player>> players, int ranking) const;
+    void printLeaderBoardHelper(std::deque<std::unique_ptr <Player>> players, int ranking) const;
 
 };
 
