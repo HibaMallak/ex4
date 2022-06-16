@@ -20,7 +20,6 @@
 #include "Vampire.h"
 #include "Goblin.h"
 
-static const bool REVERSE = true;
 static const bool GAME_OVER = true;
 static const int FIRST_RANK = 1;
 static const int NO_ROUNDS_PLAYED = 0;
@@ -91,6 +90,7 @@ private:
     std::deque<std::unique_ptr <Player>> m_winners;
 
     bool is_Valid_Player_Class (const std::string player_name);
+    bool is_Valid_card (const std::string cardName);
     std::unique_ptr<Player> convet_stringToPlayer (const std::string player_job);
     std::unique_ptr<Card> convet_stringToCard (const std::string card_name);
 

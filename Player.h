@@ -2,6 +2,7 @@
 #define EX2_Player_H
 #include <cstring>
 #include <iostream>
+#include "Exception.h"
 
 
 static const int MIN_NATURAL = 0;
@@ -58,18 +59,9 @@ class Player{
          * Prints the player info:
          *
          * @return
-         *      std::ostream&
+         *      void
         */
-        virtual std::ostream& printPlayerInfo(std::ostream& os) const=0;
-
-    /*
-    * operator << prints by calling printPlayerInfov :
-    *
-    * @return
-    *      std::ostream&
-    */
-        friend std::ostream& operator << (std::ostream& os, const Player& Player);
-
+        virtual std::ostream& printPlayerInfo(std::ostream& os) const =0;
 
 
         /*
@@ -198,9 +190,10 @@ protected:
         //const std::string m_playerType;//according to piazza they might יורידו נקודות
 
 
-};
+}
 
-
+std::ostream& operator << (std::ostream& os, const Card& card);
+;
 
 
 

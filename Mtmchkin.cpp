@@ -7,23 +7,34 @@ using std::queue;
 
 Mtmchkin:: Mtmchkin(const std::string fileName) : m_roundsPlayed(NO_ROUNDS_PLAYED)
 {
-    std::string cardName, teamSize;
-    std::ifstream file(fileName);
 
+    printStartGameMessage();
+
+    std::ifstream file(fileName);
+    if(!file)
+    {
+        throw Exception::DeckFileNotFound();
+    }
+    std::string cardName;
+    int countLines = 1;
     while (std::getline (file, cardName))
     {
+        if(!is_Valid_card(cardName))
+        {
+            throw DeckFileFormatError(countLines);
+        }
         m_deckCards.push(convet_stringToCard(cardName));
+        ++countLines;
     }
-
     if (m_deckCards.size() < MIN_CARD_SIZE)
     {
         throw Exception::DeckFileInvalidSize();
     }
 
-    printStartGameMessage();
     printEnterTeamSizeMessage();
-    bool inputValid = true;
 
+    std::string teamSize;
+    bool inputValid = true;
     while (inputValid)
     {
         try {
@@ -40,29 +51,29 @@ Mtmchkin:: Mtmchkin(const std::string fileName) : m_roundsPlayed(NO_ROUNDS_PLAYE
         }
     }
 
-
-    std::string playerAndJob=" ";
-    printInsertPlayerMessage();
-
-
+    std::string playerAndJob = " ";
     for( int i = 0; i < std::stoi(teamSize); ++i)
     {
         printInsertPlayerMessage();
-
-        while (!is_Valid_Player_Class(playerAndJob))
+        do
         {
-            if (!std::getline(std::cin, playerAndJob) )
-            {
-                throw; //??????
-            }
-        }
+            std::getline(std::cin, playerAndJob)
+        } while ({!is_Valid_Player_Class(playerAndJob)});
 
-        m_playerQueue.push(convet_stringToPlayer(playerAndJob));
-
+        m_playerQueue.push_back(convet_stringToPlayer(playerAndJob));
     }
-
-
 }
+
+bool Mtmchkin:: is_Valid_card (const std::string cardName)
+{
+    if (cardName != "Goblin" && cardName != "Vampire" && cardName != "Dragon" && cardName != "Merchant" &&
+            cardName != "Treasure" &&cardName != "Pitfall" &&cardName != "Barfight" &&cardName != "Fairy")
+    {
+        return false;
+    }
+    return true;
+}
+
 
 bool Mtmchkin:: is_Valid_Player_Class (const std::string player_name)
 {
@@ -72,7 +83,7 @@ bool Mtmchkin:: is_Valid_Player_Class (const std::string player_name)
     if (Player:: is_Valid_name(sub))
     {
         printInvalidName();
-        throw ;//????
+        return false;
     }
 
     sub = player_name.substr(pos+1);
@@ -80,7 +91,7 @@ bool Mtmchkin:: is_Valid_Player_Class (const std::string player_name)
     if (sub != "Fighter" && sub != "Wizard" && sub != "Rogue")
     {
         printInvalidClass();
-        throw ;//????
+        return false;
     }
 
     return true;
@@ -162,18 +173,18 @@ void Mtmchkin::playRound()
 
         m_deckCards.pop();
         m_deckCards.push(currentCard);
-        m_playerQueue.pop();
+        m_playerQueue.pop_front();
         if(currentPlayer->isKnockedOut())
         {
-            m_defeatedPlayers.push_back(currentPlayer);
+            m_defeatedPlayers.push_front(currentPlayer);
         }
         else if(currentPlayer->getLevel() == MAX_LEVEL)
         {
-            m_winners.push(currentPlayer);
+            m_winners.push_back(currentPlayer);
         }
         else
         {
-            m_playerQueue.push(currentPlayer);
+            m_playerQueue.push_back(currentPlayer);
         }
         if(isGameOver())
         {
@@ -185,24 +196,13 @@ void Mtmchkin::playRound()
 }
 
 
-void Mtmchkin::printLeaderBoardHelper(const std::deque<std::unique_ptr<Player>> players, int ranking, bool reverse) const
+void Mtmchkin::printLeaderBoardHelper(const std::deque<std::unique_ptr<Player>> players, int ranking) const
 {
     std::deque<std::unique_ptr<Player>> current = std::move(players);
-    if(reverse)
+    for(int i = 0; !players.empty(); ++i)
     {
-        for(int i = 0; current.size() > 0; ++i)
-        {
-            printPlayerLeaderBoard(ranking + m_winners.size() + m_playerQueue.size() + i, current.back());
-            current.popBack();
-        }
-    }
-    else
-    {
-        for(int i = 0; i < players.size(); ++i)
-        {
-            printPlayerLeaderBoard(ranking + i, current.front());
-            current.popFront();
-        }
+        printPlayerLeaderBoard(ranking + i, current.front());
+        current.pop_front();
     }
 }
 
@@ -210,19 +210,19 @@ void Mtmchkin::printLeaderBoard() const
 {
     printLeaderBoardStartMessage();
     int ranking = FIRST_RANK;
-    printLeaderBoardHelper( m_winners, ranking, !REVERSE);
-    printLeaderBoardHelper( m_playerQueue, ranking + m_winners.size(), !REVERSE);
-    printLeaderBoardHelper( m_defeatedPlayers, ranking + m_winners.size() + m_playerQueue.size(), REVERSE);
+    printLeaderBoardHelper( m_winners, ranking);
+    printLeaderBoardHelper( m_playerQueue, ranking + m_winners.size());
+    printLeaderBoardHelper( m_defeatedPlayers, ranking + m_winners.size() + m_playerQueue.size());
 }
 
 
 bool Mtmchkin::isGameOver() const
 {
-    if(m_playerQueue.size() > 0)
+    if(m_playerQueue.empty())
     {
-        return !GAME_OVER;
+        return GAME_OVER;
     }
-    return GAME_OVER;
+    return !GAME_OVER;
 }
 
 int Mtmchkin::getNumberOfRounds() const

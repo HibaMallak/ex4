@@ -2,15 +2,12 @@
 #include "utilities.h"
 
 
-//add playertype whe neccessary
-
 Player::Player(const std::string name) : m_name(name), m_level(FIRST_LEVEL), m_force(DEFAULT_FORCE), m_HP(MAX_HP)
         , m_coins(COINS_ON_START)
 {
-    if(! is_Valid_name(name))
+    if(!is_Valid_name(name))
     {
         printInvalidName();
-        throw ; ///..........add!!!!!!
     }
 
 }
@@ -39,7 +36,6 @@ bool Player:: is_Valid_name (const std::string name)
         {
             return false;
 
-            // maybe need other exp than first if????????
         }
     }
 
