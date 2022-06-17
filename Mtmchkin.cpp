@@ -200,7 +200,7 @@ void Mtmchkin::playRound()
 /*
  void Mtmchkin:: printLeaderBoardHelper( const std::deque<std::unique_ptr <Player>> &players, int& ranking) const
 {
-    
+
     //for(std::deque<std::unique_ptr <Player>>::const_iterator it= players.begin(); it!=players.end(); it++)
     for (ranking;ranking<players.size();ranking++)
     {
@@ -245,7 +245,7 @@ void Mtmchkin::printLeaderBoard() const {
 
 void Mtmchkin:: printLeaderBoardHelper( const std::deque<std::unique_ptr <Player>> &players, int& ranking) const
 {
-    
+
     for(std::deque<std::unique_ptr <Player>>::const_iterator it= players.begin(); it!=players.end(); ++it)
     {
         printPlayerLeaderBoard(ranking, **it);
