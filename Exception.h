@@ -2,20 +2,16 @@
 #define EXCEPTION_H
 #include <iostream>
 
-class Exception
-{
-
-    public:
-
     class DeckFileNotFound : public std::exception
     {
+
+    public:
 
         const char* what() const noexcept override
         {
             return const_cast<char*>("Deck File Error: File not found");
         }
 
-    public:
         DeckFileNotFound()=default;
 
         virtual ~DeckFileNotFound()=default;
@@ -24,7 +20,7 @@ class Exception
     class DeckFileFormatError : public std::exception
     {
     public:
-        DeckFileFormatError(int line) : m_lineError("line")
+        DeckFileFormatError(int line) : m_lineError(line)
         {
 
         };
@@ -33,27 +29,27 @@ class Exception
 
         const char* what() const noexcept override
         {
-            std::string output= "Deck File Error: File format error in line "+ m_lineError;
+            std::string output= "Deck File Error: File format error in line "+ std::to_string(m_lineError);
             return const_cast<char*>(output.c_str());
         }
 
     private:
-        std::string m_lineError;
+        int m_lineError;
     };
 
     class DeckFileInvalidSize : public std::exception
     {
+    public:
 
         const char* what() const noexcept override
         {
              return const_cast<char*>("Deck File Error: Deck size is invalid");
         }
 
-    public:
         DeckFileInvalidSize()=default;
 
         virtual ~DeckFileInvalidSize()=default;
     };
-};
+
 
 #endif 

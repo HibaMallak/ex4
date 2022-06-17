@@ -9,7 +9,7 @@ class Rogue : public Player
         {
         public:
          Rogue(std::string name);
-         Rogue(Rogue& rogue) = default;;
+         Rogue(Rogue& rogue) = default;
         ~Rogue() = default;
          Rogue& operator=(Rogue& rogue) = default;
 

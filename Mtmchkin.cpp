@@ -11,7 +11,7 @@ Mtmchkin::Mtmchkin(const std::string fileName) : m_roundsPlayed(NO_ROUNDS_PLAYED
     std::ifstream file(fileName);
     if (!file)
     {
-        throw Exception::DeckFileNotFound();
+        throw DeckFileNotFound();
     }
     std::string cardName;
     int countLines = 1;
@@ -19,14 +19,14 @@ Mtmchkin::Mtmchkin(const std::string fileName) : m_roundsPlayed(NO_ROUNDS_PLAYED
     {
         if (!is_Valid_card(cardName))
         {
-            throw Exception::DeckFileFormatError(countLines);
+            throw DeckFileFormatError(countLines);
         }
         m_deckCards.push(convet_stringToCard(cardName));
         ++countLines;
     }
     if (m_deckCards.size() < MIN_CARD_SIZE)
     {
-        throw Exception::DeckFileInvalidSize();
+        throw DeckFileInvalidSize();
     }
 
     printEnterTeamSizeMessage();
@@ -39,7 +39,7 @@ Mtmchkin::Mtmchkin(const std::string fileName) : m_roundsPlayed(NO_ROUNDS_PLAYED
         {
             if (!std::getline(std::cin, teamSize) || std::stoi(teamSize) < MIN_TEAM_SIZE || std::stoi(teamSize) > MAX_TEAM_SIZE)
             {
-                throw Exception::DeckFileInvalidSize();
+                throw DeckFileInvalidSize();
             }
             inputValid = false;
         }
@@ -197,27 +197,15 @@ void Mtmchkin::playRound()
     ++m_roundsPlayed;
 }
 
-void Mtmchkin::printLeaderBoardHelper( std::deque<std::unique_ptr <Player>> players, int ranking) const
+ void Mtmchkin:: printLeaderBoardHelper( const std::deque<std::unique_ptr <Player>> &players, int& ranking) const
 {
-    //std::deque<std::unique_ptr<Player>> current = std::move(players);
-    //for (int i = 0; !players.empty(); ++i)
-    //{
-    //    printPlayerLeaderBoard(ranking + i, *(current.front()));
-      //  current.pop_front();
-   // }
-   
-    int size = players.size();
     
-    for(int i = 0; i < size; ++i)
+    //for(std::deque<std::unique_ptr <Player>>::const_iterator it= players.begin(); it!=players.end(); it++)
+    for (ranking;ranking<players.size();ranking++)
     {
-        std::unique_ptr<Player> current = std::move(players.front());
-        printPlayerLeaderBoard(ranking + i, *current);
-        players.pop_front();
-        players.push_back(std::move(current));
-        
-        
+        printPlayerLeaderBoard(ranking, *players[ranking]);
+        ranking++;
     }
-
 
 }
 
@@ -225,9 +213,10 @@ void Mtmchkin::printLeaderBoard() const
 {
     printLeaderBoardStartMessage();
     int ranking = FIRST_RANK;
-    printLeaderBoardHelper(std::move(m_winners), ranking);
-    printLeaderBoardHelper(std::move(m_playerQueue), ranking + m_winners.size());
-    printLeaderBoardHelper(std::move(m_defeatedPlayers), ranking + m_winners.size() + m_playerQueue.size());
+    printLeaderBoardHelper(m_winners, ranking);
+    printLeaderBoardHelper(m_playerQueue, ranking);
+    printLeaderBoardHelper(m_defeatedPlayers, ranking);
+
 }
 
 bool Mtmchkin::isGameOver() const

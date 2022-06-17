@@ -1,7 +1,6 @@
 #include "Player.h"
 #include "utilities.h"
 
-
 Player::Player(const std::string name) : m_name(name), m_level(FIRST_LEVEL), m_force(DEFAULT_FORCE), m_HP(MAX_HP)
         , m_coins(COINS_ON_START)
 {
@@ -155,6 +154,6 @@ void Player::lowerForce(int toLower)
     this->m_force -= toLower;
     if(this->m_force < MIN_NATURAL)
     {
-        this->m_force == MIN_NATURAL;
+        this->m_force = MIN_NATURAL;
     }
 }

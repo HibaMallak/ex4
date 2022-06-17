@@ -11,7 +11,8 @@ void Pitfall::applyEncounter(Player& player) const
 {
     try
     {
-        Rogue& check= dynamic_cast <Rogue&>(player);
+       // Rogue& check= dynamic_cast <Rogue&>(player);
+        dynamic_cast <Rogue&>(player);
     }
     catch (const std::bad_cast&)
     {

@@ -9,7 +9,8 @@ void Fairy::applyEncounter(Player& player) const
 {
     try
     {
-        Wizard& check= dynamic_cast <Wizard&>(player);
+        //Wizard& check= dynamic_cast <Wizard&>(player);
+        dynamic_cast <Wizard&>(player);
     }
     catch (const std::bad_cast&)
     {

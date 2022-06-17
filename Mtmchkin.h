@@ -89,7 +89,7 @@ private:
     std::queue<std::unique_ptr <Card>> m_deckCards;
     std::deque<std::unique_ptr <Player>> m_playerQueue;
     std::deque<std::unique_ptr <Player>> m_defeatedPlayers;
-    std::deque<std::unique_ptr <Player>> m_winners;
+    std::deque<std::unique_ptr<Player>> m_winners;
 
     bool is_Valid_Player_Class (const std::string player_name);
     bool is_Valid_card (const std::string cardName);
@@ -105,7 +105,7 @@ private:
         * @return
         *      void
         */
-    void printLeaderBoardHelper(std::deque<std::unique_ptr <Player>> players, int ranking) const;
+     void printLeaderBoardHelper( const std::deque<std::unique_ptr <Player>> &players, int& ranking) const;
 
 };
 

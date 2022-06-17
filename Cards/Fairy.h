@@ -10,7 +10,7 @@ class Fairy : public Card
 
     Fairy();
     ~Fairy() = default;
-    Fairy(Fairy& fairy) = default;;
+    Fairy(Fairy& fairy) = default;
     Fairy& operator=(Fairy& fairy) = default;
 
     void applyEncounter(Player& player) const override;

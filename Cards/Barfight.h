@@ -9,7 +9,7 @@ class Barfight : public Card
     public:
     Barfight();
     ~Barfight() = default;
-    Barfight(Barfight& barfight) = default;;
+    Barfight(Barfight& barfight) = default;
     Barfight& operator=(Barfight& barfight) = default;
 
 
