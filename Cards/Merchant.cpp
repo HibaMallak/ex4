@@ -53,5 +53,6 @@ void Merchant::applyEncounter(Player& player) const
 std::ostream& Merchant:: printInfo(std::ostream& os) const
 {
     printCardDetails(os, "Merchant");
+    printEndOfCardDetails(os);
     return os;
 }

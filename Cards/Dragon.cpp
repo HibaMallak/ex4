@@ -34,5 +34,6 @@ std::ostream& Dragon::printInfo(std::ostream& os) const
 {
     printCardDetails(os,"Dragon");
     printMonsterDetails(os, this->m_force, DNE, this->m_loot, IS_DRAGON);
+    printEndOfCardDetails(os);
     return os;
 }

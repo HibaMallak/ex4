@@ -29,6 +29,7 @@ std::ostream&  Goblin:: printInfo(std::ostream& os) const
 {
     printCardDetails(os, "Goblin");
     printMonsterDetails(os, this->m_force, this->m_damage, this->m_loot, !IS_DRAGON);
+    printEndOfCardDetails(os);
     return os;
 }
 

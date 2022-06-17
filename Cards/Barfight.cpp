@@ -25,5 +25,6 @@ void Barfight::applyEncounter(Player& player) const
 std::ostream& Barfight::printInfo(std::ostream& os) const
 {
     printCardDetails(os, "Barfight");
+    printEndOfCardDetails(os);
     return os;
 }

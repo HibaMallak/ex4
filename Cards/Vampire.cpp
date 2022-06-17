@@ -33,5 +33,6 @@ std::ostream& Vampire::printInfo(std::ostream& os) const
 {
     printCardDetails(os, "Vampire");
     printMonsterDetails(os, this->m_force, this->m_damage, this->m_loot, !IS_DRAGON);
+    printEndOfCardDetails(os);
     return os;
 }

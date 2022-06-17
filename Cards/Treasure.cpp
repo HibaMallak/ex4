@@ -15,5 +15,6 @@ void Treasure::applyEncounter(Player& player) const
 std::ostream&  Treasure:: printInfo(std::ostream& os) const
 {
     printCardDetails(os, "Treasure");
+    printEndOfCardDetails(os);
     return os;
 }
