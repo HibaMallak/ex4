@@ -3,6 +3,7 @@
 #include "Cards/Card.h"
 #include "Players/Player.h"
 #include "Exception.h"
+#include "utilities.h"
 #include <iostream>
 #include <memory>
 #include <string.h>
@@ -19,7 +20,7 @@
 #include "Cards/Merchant.h"
 #include "Cards/Dragon.h"
 #include "Cards/Vampire.h"
-#include "Cards/Goblin.h"
+#include "Cards/Goblin.h" 
 
 static const bool GAME_OVER = true;
 static const int FIRST_RANK = 1;

@@ -115,6 +115,7 @@ std::unique_ptr<Player> Mtmchkin::convet_stringToPlayer(const std::string player
     {
         return std::unique_ptr<Player>(new Rogue(name));
     }
+    return std::unique_ptr<Player>(nullptr);
 }
 
 std::unique_ptr<Card> Mtmchkin::convet_stringToCard(const std::string card_name)
@@ -153,36 +154,40 @@ std::unique_ptr<Card> Mtmchkin::convet_stringToCard(const std::string card_name)
     {
         return std::unique_ptr<Card>(new Fairy());
     }
+    return std::unique_ptr<Card>(nullptr);
 }
 
 void Mtmchkin::playRound()
 {
+    std::unique_ptr<Player> currentPlayer;
+    std::unique_ptr<Card> currentCard;
     printRoundStartMessage(m_roundsPlayed + 1);
     int teamSizeOnThisRound = m_playerQueue.size();
     for (int i = 0; i < teamSizeOnThisRound; ++i)
     {
 
-        std::unique_ptr<Player> currentPlayer = std::move(m_playerQueue.front());
-        std::unique_ptr<Card> currentCard = std::move(m_deckCards.front());
+        currentPlayer = std::move(m_playerQueue.front());
+        currentCard = std::move(m_deckCards.front());
 
         printTurnStartMessage(currentPlayer->getPlayerName());
         currentCard->applyEncounter(*currentPlayer);
 
         m_deckCards.pop();
-        m_deckCards.push(currentCard);
+        m_deckCards.push(std::move(currentCard));
         m_playerQueue.pop_front();
         if (currentPlayer->isKnockedOut())
         {
-            m_defeatedPlayers.push_front(currentPlayer);
+            m_defeatedPlayers.push_front(std::move(currentPlayer));
         }
         else if (currentPlayer->getLevel() == MAX_LEVEL)
         {
-            m_winners.push_back(currentPlayer);
+            m_winners.push_back(std::move(currentPlayer));
         }
         else
         {
-            m_playerQueue.push_back(currentPlayer);
+            m_playerQueue.push_back(std::move(currentPlayer));
         }
+
         if (isGameOver())
         {
             printGameEndMessage();
@@ -194,21 +199,35 @@ void Mtmchkin::playRound()
 
 void Mtmchkin::printLeaderBoardHelper( std::deque<std::unique_ptr <Player>> players, int ranking) const
 {
-    std::deque<std::unique_ptr<Player>> current = std::move(players);
-    for (int i = 0; !players.empty(); ++i)
+    //std::deque<std::unique_ptr<Player>> current = std::move(players);
+    //for (int i = 0; !players.empty(); ++i)
+    //{
+    //    printPlayerLeaderBoard(ranking + i, *(current.front()));
+      //  current.pop_front();
+   // }
+   
+    int size = players.size();
+    
+    for(int i = 0; i < size; ++i)
     {
-        printPlayerLeaderBoard(ranking + i, *(current.front()));
-        current.pop_front();
+        std::unique_ptr<Player> current = std::move(players.front());
+        printPlayerLeaderBoard(ranking + i, *current);
+        players.pop_front();
+        players.push_back(std::move(current));
+        
+        
     }
+
+
 }
 
 void Mtmchkin::printLeaderBoard() const
 {
     printLeaderBoardStartMessage();
     int ranking = FIRST_RANK;
-    printLeaderBoardHelper(m_winners, ranking);
-    printLeaderBoardHelper(m_playerQueue, ranking + m_winners.size());
-    printLeaderBoardHelper(m_defeatedPlayers, ranking + m_winners.size() + m_playerQueue.size());
+    printLeaderBoardHelper(std::move(m_winners), ranking);
+    printLeaderBoardHelper(std::move(m_playerQueue), ranking + m_winners.size());
+    printLeaderBoardHelper(std::move(m_defeatedPlayers), ranking + m_winners.size() + m_playerQueue.size());
 }
 
 bool Mtmchkin::isGameOver() const
