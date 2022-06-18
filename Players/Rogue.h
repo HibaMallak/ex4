@@ -1,7 +1,7 @@
 #ifndef ROUGE_H
 #define ROUGE_H
 
-#include "Players/Player.h"
+#include "Player.h"
 
 static const int DOUBLE_COINS = 2;
 
@@ -10,7 +10,7 @@ class Rogue : public Player
         public:
          Rogue(std::string name);
          Rogue(Rogue& rogue) = default;
-        ~Rogue() = default;
+        ~Rogue() override = default;
          Rogue& operator=(Rogue& rogue) = default;
 
 

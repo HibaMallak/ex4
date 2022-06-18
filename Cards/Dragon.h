@@ -1,14 +1,14 @@
 #ifndef DRAGON_H
 #define DRAGON_H
-#include "Cards/BattleCards.h"
-#include "Cards/Card.h"
+#include "BattleCards.h"
+//#include "Card.h"
 
 static const int DNE = 0;
 class Dragon : public BattleCards
 {
     public:
         Dragon();
-        ~Dragon() = default;
+        ~Dragon() override = default;
         Dragon(Dragon& dragon) = default;
         Dragon& operator=(Dragon& dragon) = default;
 

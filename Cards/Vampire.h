@@ -1,14 +1,14 @@
 #ifndef VAMPIRE_H
 #define VAMPIRE_H
 
-#include "Cards/BattleCards.h"
-#include "Cards/Card.h"
+#include "BattleCards.h"
+#include "Card.h"
 
 class Vampire : public BattleCards
 {
     public:
         Vampire();
-        ~Vampire() = default;
+        ~Vampire() override = default;
         Vampire(Vampire& vampire) = default;
         Vampire& operator=(Vampire& vampire) = default;
 

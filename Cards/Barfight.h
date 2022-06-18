@@ -1,14 +1,14 @@
 #ifndef BARFIGHT_H
 #define BARFIGHT_H
 
-#include "Cards/Card.h"
+#include "Card.h"
 
 static const bool IS_FIGHTER = false;
 class Barfight : public Card
 {
     public:
     Barfight();
-    ~Barfight() = default;
+    ~Barfight() override = default;
     Barfight(Barfight& barfight) = default;
     Barfight& operator=(Barfight& barfight) = default;
 

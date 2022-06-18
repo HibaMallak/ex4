@@ -1,5 +1,5 @@
 #include "Fairy.h"
-#include "Wizard.h"
+#include "../Players/Wizard.h"
 
 Fairy :: Fairy() : Card("Fairy")
 {
@@ -15,8 +15,8 @@ void Fairy::applyEncounter(Player& player) const
     catch (const std::bad_cast&)
     {
         printFairyMessage(!IS_WIZARD);
+        return;
     }
-
     player.heal(this->m_FairyHP);
     printFairyMessage(IS_WIZARD);
 }

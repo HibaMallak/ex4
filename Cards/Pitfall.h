@@ -1,14 +1,14 @@
 #ifndef PITFALL_H
 #define PITFALL_H
 
-#include "Cards/Card.h"
+#include "Card.h"
 
 static const bool IS_ROUGE = false;
 class Pitfall : public Card
 {
     public:
     Pitfall();
-    ~Pitfall() = default;
+    ~Pitfall() override = default;
     Pitfall(Pitfall& pitfall) = default;
     Pitfall& operator=(Pitfall& pitfall) = default;
 

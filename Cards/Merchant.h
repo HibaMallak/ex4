@@ -1,17 +1,17 @@
 #ifndef MERCHANT_H
 #define MERCHANT_H
 
-#include "Cards/Card.h"
+#include "Card.h"
 
-static const char LEAVE = '0';
-static const char HEALTH_POTION = '1';
-static const char FORCE_BOOST = '2';
+static const int LEAVE = 0;
+static const int HEALTH_POTION = 1;
+static const int FORCE_BOOST = 2;
 
 class Merchant : public Card
 {
     public:
     Merchant();
-    ~Merchant() = default;
+    ~Merchant() override = default;
     Merchant(Merchant& merchant) = default;
     Merchant& operator=(Merchant& merchant) = default;
 

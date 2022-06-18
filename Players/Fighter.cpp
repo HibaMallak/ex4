@@ -1,5 +1,5 @@
 #include "Fighter.h"
-#include "utilities.h"
+#include "../utilities.h"
 
 Fighter::Fighter(std::string name) : Player(name)
 {
@@ -8,7 +8,7 @@ Fighter::Fighter(std::string name) : Player(name)
 
 int Fighter::getAttackStrength()
 {
-    return (DOUBLE_FORCE * this->m_force) + this->m_level;
+    return ((DOUBLE_FORCE * this->m_force) + this->m_level);
 }
 
 std::ostream& Fighter::printPlayerInfo(std::ostream& os) const

@@ -16,7 +16,7 @@ void Dragon:: win (Player& player) const
 
 void Dragon:: loss (Player& player) const
 {
-    player.damage(player.getPlayerHP());
+    player.damage(100);
     printLossBattle(player.getPlayerName(),"Dragon");
 
     /*

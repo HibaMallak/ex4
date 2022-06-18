@@ -1,5 +1,5 @@
 #include "Wizard.h"
-#include "utilities.h"
+#include "../utilities.h"
 
 Wizard::Wizard(std::string name) : Player(name)
 {

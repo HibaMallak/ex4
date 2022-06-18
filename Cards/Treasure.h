@@ -1,13 +1,13 @@
 #ifndef TREASURE_H
 #define TREASURE_H
 
-#include "Cards/Card.h"
+#include "Card.h"
 
 class Treasure : public Card
 {
     public:
         Treasure();
-        ~Treasure() = default;
+        ~Treasure() override = default;
         Treasure(Treasure& treasure) = default;
         Treasure& operator=(Treasure& treasure) = default;
 

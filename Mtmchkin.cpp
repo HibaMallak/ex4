@@ -8,7 +8,7 @@ Mtmchkin::Mtmchkin(const std::string fileName) : m_roundsPlayed(NO_ROUNDS_PLAYED
 
     printStartGameMessage();
 
-    std::ifstream file(fileName);
+    std::ifstream file(fileName, std::fstream::in);
     if (!file)
     {
         throw DeckFileNotFound();
@@ -78,7 +78,7 @@ bool Mtmchkin::is_Valid_Player_Class(const std::string player_name)
     int pos = player_name.find(" ");
     std::string sub = player_name.substr(0, pos);
 
-    if (Player::is_Valid_name(sub))
+    if (!Player::is_Valid_name(sub))
     {
         printInvalidName();
         return false;
@@ -160,6 +160,10 @@ std::unique_ptr<Card> Mtmchkin::convet_stringToCard(const std::string card_name)
 
 void Mtmchkin::playRound()
 {
+    if(isGameOver())
+    {
+        return;
+    }
     std::unique_ptr<Player> currentPlayer;
     std::unique_ptr<Card> currentCard;
     printRoundStartMessage(m_roundsPlayed + 1);

@@ -1,5 +1,5 @@
 #include "Player.h"
-#include "utilities.h"
+#include "../utilities.h"
 
 Player::Player(const std::string name) : m_name(name), m_level(FIRST_LEVEL), m_force(DEFAULT_FORCE), m_HP(MAX_HP)
         , m_coins(COINS_ON_START)
@@ -20,21 +20,20 @@ std::ostream& operator<< (std::ostream& os, const Player& player)
 
 bool Player:: is_Valid_name (const std::string name)
 {
-    if(name.length() > MAX_NAME_LENGTH || name.length() )
+    if(name.length() > MAX_NAME_LENGTH || name.length()<=0 )
     {
         return false;
     }
 
-    int len= name.length();
-    char charAtIndex;
+    //int len= name.length();
+    //char charAtIndex;
 
-    for(int i = MIN_NATURAL; i < len; i++)
+    for(const char &c :name)
     {
-        charAtIndex = name.at(i);
-        if(charAtIndex < 'A' || charAtIndex > 'z' || (charAtIndex > 'Z' && charAtIndex < 'a'))
+        
+        if(!isalpha(c))       //(charAtIndex < 'A' || charAtIndex > 'z' || (charAtIndex > 'Z' && charAtIndex < 'a'))
         {
             return false;
-
         }
     }
 
@@ -81,9 +80,9 @@ void Player::heal(int pointsToHeal)
 
 void Player::damage(int damageToMake)
 {
-    if(damageToMake>0)
+    if(damageToMake>=0)
     {
-        if(this->m_HP - damageToMake <0)
+        if(this->m_HP - damageToMake <=0)
         {
             this->m_HP =0;
         }

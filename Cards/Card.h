@@ -3,8 +3,8 @@
 
 #include <cstring>
 #include <memory>
-#include "Players/Player.h"
-#include "utilities.h"
+#include "../Players/Player.h"
+#include "../utilities.h"
 
 class Card {
 public:

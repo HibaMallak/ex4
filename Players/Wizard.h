@@ -1,7 +1,7 @@
 #ifndef WIZARD_H
 #define WIZARD_H
 
-#include "Players/Player.h"
+#include "Player.h"
 
 static const int DOUBLE_HP = 2;
 
@@ -10,7 +10,7 @@ class Wizard : public Player
      public:
 
        Wizard(std::string name);
-       ~Wizard() = default;
+       ~Wizard() override = default;
        Wizard(Wizard& wizard) = default;
        Wizard& operator=(Wizard& wizard) = default;
 

@@ -1,7 +1,7 @@
 #ifndef FIGHTER_H
 #define FIGHTER_H
 
-#include "Players/Player.h"
+#include "Player.h"
 
 static const int DOUBLE_FORCE = 2;
 
@@ -9,7 +9,7 @@ class Fighter : public Player
      {
      public:
         Fighter(std::string name);
-        ~Fighter() = default;
+        ~Fighter() override= default;
         Fighter& operator=(Fighter& fighter) = default;
         Fighter(Fighter& fighter) = default;
 

@@ -1,7 +1,7 @@
 #ifndef FAIRY_H
 #define FAIRY_H
 
-#include "Cards/Card.h"
+#include "Card.h"
 
 static const bool IS_WIZARD = true;
 class Fairy : public Card
@@ -9,7 +9,7 @@ class Fairy : public Card
     public:
 
     Fairy();
-    ~Fairy() = default;
+    ~Fairy() override = default;
     Fairy(Fairy& fairy) = default;
     Fairy& operator=(Fairy& fairy) = default;
 

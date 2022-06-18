@@ -1,5 +1,5 @@
 #include "Barfight.h"
-#include "Fighter.h"
+#include "../Players/Fighter.h"
 
 Barfight :: Barfight() : Card("Barfight")
 {
@@ -16,10 +16,11 @@ void Barfight::applyEncounter(Player& player) const
     catch (const std::bad_cast&)
     {
         player.damage(this->m_damage);
-        printBarfightMessage(!IS_FIGHTER);
+        printBarfightMessage(IS_FIGHTER);
+        return;
     }
 
-    printBarfightMessage(IS_FIGHTER);
+    printBarfightMessage(!IS_FIGHTER);
 }
 
 std::ostream& Barfight::printInfo(std::ostream& os) const

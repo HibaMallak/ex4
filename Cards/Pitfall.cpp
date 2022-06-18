@@ -1,5 +1,5 @@
 #include "Pitfall.h"
-#include "Rogue.h"
+#include "../Players/Rogue.h"
 
 Pitfall :: Pitfall() : Card("Pitfall")
 {
@@ -17,10 +17,11 @@ void Pitfall::applyEncounter(Player& player) const
     catch (const std::bad_cast&)
     {
         player.damage(this->m_damage);
-        printBarfightMessage(!IS_ROUGE);
+        printPitfallMessage(IS_ROUGE);
+        return;
     }
 
-    printBarfightMessage(IS_ROUGE);
+    printPitfallMessage(!IS_ROUGE);
 
 
 }

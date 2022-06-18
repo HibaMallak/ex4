@@ -2,7 +2,7 @@
 #ifndef UNTITLED3_BATTLECARDS_H
 #define UNTITLED3_BATTLECARDS_H
 
-#include "Cards/Card.h"
+#include "Card.h"
 static const bool IS_DRAGON = true;
 
 
@@ -10,7 +10,7 @@ class BattleCards : public Card
 {
 public:
     BattleCards(std::string m_name);
-    virtual ~BattleCards()=default;
+    virtual ~BattleCards() override =default;
 
     void applyEncounter(Player& player) const override; // shani change from & to *
     virtual void win (Player& player) const =0;

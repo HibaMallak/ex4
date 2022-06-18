@@ -1,5 +1,5 @@
 #include "Rogue.h"
-#include "utilities.h"
+#include "../utilities.h"
 
 Rogue::Rogue(std::string name) : Player(name)
 {

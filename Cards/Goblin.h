@@ -1,14 +1,14 @@
 #ifndef GOBLIN_H
 #define GOBLIN_H
 
-#include "Cards/Card.h"
-#include "Cards/BattleCards.h"
+#include "Card.h"
+#include "BattleCards.h"
 
 class Goblin : public BattleCards
 {
     public:
         Goblin();
-        ~Goblin() = default;
+        ~Goblin() override = default;
         Goblin(Goblin& goblin) = default;
         Goblin& operator=(Goblin& goblin) = default;
 
