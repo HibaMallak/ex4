@@ -2,53 +2,57 @@
 #define EXCEPTION_H
 #include <iostream>
 
+static const std::string FILE_NOT_FOUND= "Deck File Error: File not found";
+static const std::string FORMAT_ERROR= "Deck File Error: File format error in line ";
+static const std::string INVALID_SIZE="Deck File Error: Deck size is invalid";
+
     class DeckFileNotFound : public std::exception
     {
 
     public:
 
-        const char* what() const noexcept override
+        DeckFileNotFound()=default;
+        virtual ~DeckFileNotFound() override=default;
+
+        virtual const char* what() const noexcept override
         {
-            return const_cast<char*>("Deck File Error: File not found");
+            return (FILE_NOT_FOUND).c_str();
         }
 
-        DeckFileNotFound()=default;
-
-        virtual ~DeckFileNotFound()=default;
     };
+
+
 
     class DeckFileFormatError : public std::exception
     {
     public:
-        DeckFileFormatError(int line) : m_lineError(line)
+        DeckFileFormatError(int line) : m_Error_message(FORMAT_ERROR+ std::to_string(line))
         {
 
         };
 
-        virtual ~DeckFileFormatError()=default;
+        virtual ~DeckFileFormatError() override=default;
 
-        const char* what() const noexcept override
+        virtual const char* what() const noexcept override
         {
-            std::string output= "Deck File Error: File format error in line "+ std::to_string(m_lineError);
-            return const_cast<char*>(output.c_str());
+            return (m_Error_message).c_str();
         }
 
     private:
-        int m_lineError;
+        std::string m_Error_message;
     };
 
     class DeckFileInvalidSize : public std::exception
     {
     public:
 
-        const char* what() const noexcept override
-        {
-             return const_cast<char*>("Deck File Error: Deck size is invalid");
-        }
-
         DeckFileInvalidSize()=default;
+        virtual ~DeckFileInvalidSize() override=default;
 
-        virtual ~DeckFileInvalidSize()=default;
+        virtual const char* what() const noexcept override
+        {
+            return (INVALID_SIZE).c_str();
+        }
     };
 
 
