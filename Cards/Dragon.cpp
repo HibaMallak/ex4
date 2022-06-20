@@ -37,3 +37,17 @@ std::ostream& Dragon::printInfo(std::ostream& os) const
     printEndOfCardDetails(os);
     return os;
 }
+
+bool Dragon:: gang_Encounter(Player& player, bool check) const
+{
+    if (check == false || (player.getAttackStrength() < MIN_FOR_WIN ))
+    {
+        loss(player);
+        return false;
+    }
+
+
+    player.addCoins(this->m_loot);
+    return true;
+
+}

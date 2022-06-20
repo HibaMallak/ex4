@@ -17,6 +17,8 @@ public:
     virtual void loss (Player& player) const =0;
     virtual std::ostream& printInfo(std::ostream& os) const = 0;
 
+    virtual bool gang_Encounter(Player& player, bool check) const =0;
+
 
 protected:
     int m_force;

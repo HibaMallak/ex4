@@ -4,6 +4,8 @@
 #include "BattleCards.h"
 #include "Card.h"
 
+static const int MIN_FOR_WIN = 10;
+
 class Vampire : public BattleCards
 {
     public:
@@ -15,6 +17,9 @@ class Vampire : public BattleCards
         std::ostream& printInfo(std::ostream& os) const override;
         void win (Player& player) const  override;
         void loss (Player& player) const  override;
+
+        bool gang_Encounter(Player& player, bool check) const override;
+
 
     private:
       int m_force = 10;

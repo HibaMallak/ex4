@@ -3,6 +3,8 @@
 #include "BattleCards.h"
 //#include "Card.h"
 
+static const int MIN_FOR_WIN = 25;
+
 static const int DNE = 0;
 class Dragon : public BattleCards
 {
@@ -16,7 +18,9 @@ class Dragon : public BattleCards
         void win (Player& player)const  override;
         void loss (Player& player) const override;
 
-    private:
+    bool gang_Encounter(Player& player, bool check) const override;
+
+private:
         int m_force = 25;
         int m_loot = 1000;
 

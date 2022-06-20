@@ -4,6 +4,9 @@
 #include "Card.h"
 #include "BattleCards.h"
 
+static const int MIN_FOR_WIN = 6;
+
+
 class Goblin : public BattleCards
 {
     public:
@@ -16,7 +19,9 @@ class Goblin : public BattleCards
         void win (Player& player) const override;
         void loss (Player& player) const override;
 
-    private:
+    bool gang_Encounter(Player& player, bool check) const override;
+
+private:
         int m_force = 6;
         int m_loot = 2;
         int m_damage = 10;
