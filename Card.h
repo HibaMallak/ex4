@@ -17,7 +17,7 @@ public:
      *      A new instance of Card.
     */
     Card(const std::string cardName);
-
+    Card() = default;
 
     /*
      * Handling the player's applyEncounter with the card:
