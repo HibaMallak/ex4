@@ -24,7 +24,8 @@ void Gang::applyEncounter(Player& player) const
 
     if (KEEP_BATTLE== true)
     {
-        
+        player.levelUp();
+        printWinBattle(player.getPlayerName(),"Gang");
     }
 }
 
