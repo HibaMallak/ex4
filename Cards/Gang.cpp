@@ -13,13 +13,20 @@ void Gang::applyEncounter(Player& player) const
 
     for(std::deque<std::unique_ptr <BattleCards>>::const_iterator it= m_GangCards.begin(); it!=m_GangCards.end(); ++it)
     {
-        if ( KEEP_BATTLE && (*it)->gang_Encounter(player,KEEP_BATTLE))
+        if (KEEP_BATTLE)
         {
-            continue;
+            if ((*it)->gang_Encounter(player,KEEP_BATTLE))
+            {
+                continue;
+            }
+
+            KEEP_BATTLE= false;
         }
 
-        KEEP_BATTLE= false;
-        (*it)->gang_Encounter(player,KEEP_BATTLE);
+        else
+        {
+            (*it)->gang_Encounter(player,KEEP_BATTLE);
+        }
     }
 
     if (KEEP_BATTLE== true)
