@@ -17,7 +17,7 @@ public:
      *      A new instance of Card.
     */
     Card(const std::string cardName);
-
+    Card() = default;
 
     /*
      * Handling the player's applyEncounter with the card:
@@ -43,8 +43,10 @@ public:
      *      void
     */
     virtual std::ostream& printInfo(std::ostream& os) const =0;
+
     friend std::ostream& operator << (std::ostream& os, const Card& card);
     bool is_Valid_card (const std::string cardName);
+    virtual void addGangCard(std::string card_name);
 
 protected:
     const std::string m_cardName;
