@@ -15,15 +15,37 @@ Mtmchkin::Mtmchkin(const std::string fileName) : m_roundsPlayed(NO_ROUNDS_PLAYED
     }
     std::string cardName;
     int countLines = 1;
+    bool gangCards = false;
     while (std::getline(file, cardName))
     {
-        if (!is_Valid_card(cardName))
+        if (is_Valid_card(cardName) == CARD_INVALID || 
+            ((cardName == "EndGang") && !gangCards) || gangCards && (cardName == "Gang"))
         {
             throw DeckFileFormatError(countLines);
         }
-        m_deckCards.push(std::move(convet_stringToCard(cardName)));
+        if(cardName == "Gang")
+        {
+            gangCards = true;
+        }
+        if(cardName == "EndGang")
+        {
+            gangCards = false;
+        }
+        if(gangCards)
+        {
+            if(is_Valid_card(cardName) != GANG_CARD)
+            {
+                throw DeckFileFormatError(countLines);
+            }
+            m_deckCards.back()->addGangCard(cardName);
+        }
+        else 
+        {
+            m_deckCards.push(std::move(convet_stringToCard(cardName)));
+        }
         ++countLines;
     }
+
     if (m_deckCards.size() < MIN_CARD_SIZE)
     {
         throw DeckFileInvalidSize();
@@ -63,15 +85,20 @@ Mtmchkin::Mtmchkin(const std::string fileName) : m_roundsPlayed(NO_ROUNDS_PLAYED
     }
 }
 
-bool Mtmchkin::is_Valid_card(const std::string cardName)
+int Mtmchkin::is_Valid_card(const std::string cardName)
 {
-    if (cardName != "Goblin" && cardName != "Vampire" && cardName != "Dragon" && cardName != "Merchant" &&
-        cardName != "Treasure" && cardName != "Pitfall" && cardName != "Barfight" && cardName != "Fairy")
+    if (cardName == "Goblin" || cardName == "Vampire" || cardName == "Dragon")  
     {
-        return false;
+        return GANG_CARD;
     }
-    return true;
+    if(cardName != "Merchant" && cardName != "Treasure" && cardName != "Pitfall" 
+        && cardName != "Barfight" && cardName != "Fairy")
+        {
+            return CARD_INVALID;
+        }
+    return NON_GANG_CARD;
 }
+
 
 bool Mtmchkin::is_Valid_Player_Class(const std::string player_name)
 {

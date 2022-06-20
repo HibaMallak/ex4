@@ -3,8 +3,8 @@
 
 #include <cstring>
 #include <memory>
-#include "Player.h"
-#include "utilities.h"
+#include "../Players/Player.h"
+#include "../utilities.h"
 
 class Card {
 public:
@@ -43,12 +43,13 @@ public:
      *      void
     */
     virtual std::ostream& printInfo(std::ostream& os) const =0;
+
     friend std::ostream& operator << (std::ostream& os, const Card& card);
     bool is_Valid_card (const std::string cardName);
+    virtual void addGangCard(std::string card_name);
 
 protected:
     const std::string m_cardName;
-
 };
 
 
