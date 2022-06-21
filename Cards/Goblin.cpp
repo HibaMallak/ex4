@@ -15,12 +15,15 @@ void Goblin:: win (Player& player) const
 
 void Goblin:: loss (Player& player) const
 {
-    if (player.getPlayerCoins() - m_damage <= 0)
+    if (player.getPlayerHP() - m_damage <= 0)
     {
-        player.damage(player.getPlayerCoins());
+        player.damage(player.getPlayerHP());
 
     }
-    player.damage(this->m_damage);
+    else
+    {
+        player.damage(this->m_damage);
+    }
     printLossBattle(player.getPlayerName(), "Goblin");
 
 }

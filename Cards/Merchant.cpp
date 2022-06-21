@@ -12,15 +12,32 @@ void Merchant::applyEncounter(Player& player) const
 {
     printMerchantInitialMessageForInteractiveEncounter(std::cout, player.getPlayerName(), player.getPlayerCoins());
     int paid = 0;
-    std::string playerChoice; //maybe add the isdigit and isalpha??
+    bool stoiFuncWork = true;
+    std::string playerChoice;
     std::cin >> playerChoice;
-    while(stoi(playerChoice) < LEAVE || stoi(playerChoice) > FORCE_BOOST)
+    int intPlayerChoice;
+    do
     {
-        printInvalidInput();
-        std::cin >> playerChoice;//        std::cin >> playerChoice;
-    }
+        try
+        {
+            intPlayerChoice = std::stoi(playerChoice);
+        }
+        catch(...)
+        {
+            stoiFuncWork = false;
+            printInvalidInput();
+            std::cin >> playerChoice;
+        }
+        if(stoiFuncWork)
+        {
+            if(intPlayerChoice > LEAVE || intPlayerChoice < FORCE_BOOST)
+            {
+                stoiFuncWork = false;
+            }
+        }
+    } while (!stoiFuncWork);
 
-    if(stoi(playerChoice) == HEALTH_POTION)
+    if(intPlayerChoice == HEALTH_POTION)
     {
         if (!player.pay(this->m_coinsPerPotion))
         {
@@ -29,12 +46,11 @@ void Merchant::applyEncounter(Player& player) const
             return;
 
         }
-
         player.heal(this->m_toAdd);
         paid = this->m_coinsPerPotion;
         printMerchantSummary(std::cout, player.getPlayerName(), HEALTH_POTION, paid);
     } 
-    if(stoi(playerChoice) == FORCE_BOOST)
+    if(intPlayerChoice == FORCE_BOOST)
     {
         if (!player.pay(this->m_coinsPerBoost))
         {
@@ -47,7 +63,7 @@ void Merchant::applyEncounter(Player& player) const
         paid = this->m_coinsPerBoost;
         printMerchantSummary(std::cout, player.getPlayerName(), FORCE_BOOST, paid);
     }
-    if(stoi(playerChoice) == LEAVE)
+    if(intPlayerChoice == LEAVE)
     {
         printMerchantSummary(std::cout, player.getPlayerName(), LEAVE, paid);
     }

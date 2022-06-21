@@ -15,9 +15,9 @@ void Vampire:: win (Player& player) const
 
 void Vampire:: loss (Player& player) const
 {
-    if (player.getPlayerCoins() - m_damage <= 0)
+    if (player.getPlayerHP() - m_damage <= 0)
     {
-        player.damage(player.getPlayerCoins());
+        player.damage(player.getPlayerHP());
     }
     else
     {
