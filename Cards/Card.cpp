@@ -6,30 +6,19 @@ Card::Card(const std::string cardName): m_cardName (cardName)
 
 }
 
-bool Card:: is_Valid_card (const std::string cardName)
+
+int Card::is_Valid_card(const std::string cardName)
 {
-
-    if (cardName != "Goblin" && cardName != "Vampire" && cardName != "Dragon" && cardName != "Merchant" &&
-            cardName != "Treasure" &&cardName != "Pitfall" &&cardName != "Barfight" &&cardName != "Fairy")
+    if (cardName == "Goblin" || cardName == "Vampire" || cardName == "Dragon")
     {
-        return false;
+        return GANG_CARD;
     }
-    return true;
-
-    /*
-    int len= cardName.length();
-    char charAtIndex;
-
-    /// maybe delete
-    for(int i= MIN_NATURAL; i< len; i++)
+    if(cardName != "Merchant" && cardName != "Treasure" && cardName != "Pitfall"
+       && cardName != "Barfight" && cardName != "Fairy"&&cardName!="Gang"&&cardName!="EndGang")
     {
-        charAtIndex = cardName.at(i);
-        if(charAtIndex< 'A' || charAtIndex > 'z' || charAtIndex> 'Z' || charAtIndex< 'a')
-            printInvalidName();
+        return CARD_INVALID;
     }
-
-     */
-
+    return NON_GANG_CARD;
 }
 
 std::ostream& operator << (std::ostream& os, const Card& card)

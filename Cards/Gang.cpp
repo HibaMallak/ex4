@@ -1,5 +1,5 @@
 #include "Gang.h"
-
+#include <fstream>
 
 Gang :: Gang() : Card("Gang")
 {
@@ -67,20 +67,39 @@ void Gang::applyEncounter(Player& player) const
     }
 }
 
-void Gang::addGangCard(std::string card_name)
+void Gang::buildGang(std::ifstream &file, std::string card, int &countLines)
+{
+
+    while(std::getline(file, card))
+    {
+        if(card == "EndGang")
+        {
+            return;
+        }
+        if ((is_Valid_card(card) != GANG_CARD )||
+            (card == "Gang"))
+        {
+            throw DeckFileFormatError(countLines);
+        }
+        m_GangCards.push_back(std::move(addGangCard(card)));
+        ++countLines;
+    }
+
+    throw DeckFileFormatError(countLines);
+}
+std::unique_ptr<BattleCards> Gang::addGangCard(std::string card_name)
 {
     if (card_name == "Goblin")
     {
-        m_GangCards.push_back(std::unique_ptr<BattleCards>(new Goblin()));
+        return std::unique_ptr<BattleCards>(new Goblin());
     }
     if (card_name == "Vampire")
     {
-        m_GangCards.push_back(std::unique_ptr<BattleCards>(new Vampire()));
+        return std::unique_ptr<BattleCards>(new Vampire());
     }
-    if (card_name == "Dragon")
-    {
-        m_GangCards.push_back(std::unique_ptr<BattleCards>(new Dragon()));
-    }
+    return std::unique_ptr<BattleCards>(new Dragon());
+
+
 }
 
 std::ostream& Gang::printInfo(std::ostream& os) const

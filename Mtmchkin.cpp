@@ -15,36 +15,19 @@ Mtmchkin::Mtmchkin(const std::string fileName) : m_roundsPlayed(NO_ROUNDS_PLAYED
     }
     std::string cardName;
     int countLines = 1;
-    bool gangCards = false;
     while (std::getline(file, cardName))
     {
-        if ((is_Valid_card(cardName) == CARD_INVALID )||
-            (gangCards && (cardName == "Gang")) ||((cardName == "EndGang") && !gangCards) )
+        if ((Card::is_Valid_card(cardName) == CARD_INVALID ))
         {
             throw DeckFileFormatError(countLines);
         }
         if(cardName == "Gang")
         {
-            gangCards = true;
             m_deckCards.push(std::move(std::unique_ptr<Card>(new Gang())));
+            m_deckCards.back()->buildGang(file, cardName, countLines);
             ++countLines;
             continue;
 
-        }
-        if(cardName == "EndGang")
-        {
-            gangCards = false;
-            continue;
-        }
-        if(gangCards)
-        {
-            if(is_Valid_card(cardName) != GANG_CARD)
-            {
-                throw DeckFileFormatError(countLines);
-            }
-
-           //Gang* g=dynamic_cast <Gang&>(m_deckCards.back());
-            m_deckCards.back()->addGangCard(cardName);
         }
         else
         {
@@ -52,11 +35,6 @@ Mtmchkin::Mtmchkin(const std::string fileName) : m_roundsPlayed(NO_ROUNDS_PLAYED
         }
         ++countLines;
     }
-    if(gangCards == true) //if endgang is not recieved 
-    {
-        throw DeckFileFormatError(countLines);
-    }
-
     if (m_deckCards.size() < MIN_CARD_SIZE)
     {
         throw DeckFileInvalidSize();
@@ -96,19 +74,7 @@ Mtmchkin::Mtmchkin(const std::string fileName) : m_roundsPlayed(NO_ROUNDS_PLAYED
     }
 }
 
-int Mtmchkin::is_Valid_card(const std::string cardName)
-{
-    if (cardName == "Goblin" || cardName == "Vampire" || cardName == "Dragon")
-    {
-        return GANG_CARD;
-    }
-    if(cardName != "Merchant" && cardName != "Treasure" && cardName != "Pitfall"
-       && cardName != "Barfight" && cardName != "Fairy"&&cardName!="Gang"&&cardName!="EndGang")
-    {
-        return CARD_INVALID;
-    }
-    return NON_GANG_CARD;
-}
+
 
 
 bool Mtmchkin::is_Valid_Player_Class(const std::string player_name)

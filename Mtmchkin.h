@@ -29,9 +29,6 @@ static const int NO_ROUNDS_PLAYED = 0;
 static const int MIN_TEAM_SIZE = 2;
 static const int MAX_TEAM_SIZE = 6;
 static const int MIN_CARD_SIZE = 5;
-static const int CARD_INVALID = 0;
-static const int GANG_CARD = 1;
-static const int NON_GANG_CARD = 2;
 
 
 class Mtmchkin{
@@ -96,7 +93,6 @@ private:
     std::deque<std::unique_ptr<Player>> m_winners;
 
     bool is_Valid_Player_Class (const std::string player_name);
-    int is_Valid_card (const std::string cardName);
     std::unique_ptr<Player> convet_stringToPlayer (const std::string player_job);
     std::unique_ptr<Card> convet_stringToCard (const std::string card_name);
 
