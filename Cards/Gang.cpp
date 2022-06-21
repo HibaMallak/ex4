@@ -82,3 +82,8 @@ void Gang::addGangCard(std::string card_name)
         m_GangCards.push_back(std::unique_ptr<BattleCards>(new Dragon()));
     }
 }
+
+std::ostream& Gang::printInfo(std::ostream& os) const
+{
+    return os;
+}

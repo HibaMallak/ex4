@@ -4,11 +4,6 @@ Card::Card(const std::string cardName): m_cardName (cardName)
 {
     //if(cardName.length() > MAX_NAME_LENGTH || cardName.length() || (!is_Valid_card(cardName))  )
 
-    if(!is_Valid_card(cardName))
-    {
-        printInvalidName();
-        //THROW DeckFileFormat
-    }
 }
 
 bool Card:: is_Valid_card (const std::string cardName)

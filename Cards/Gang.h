@@ -19,6 +19,7 @@ public:
 
     void applyEncounter(Player& player) const override;
     void addGangCard(std::string card_name);
+    std::ostream& printInfo(std::ostream& os) const override;
 
 private:
     std::deque<std::unique_ptr <BattleCards>> m_GangCards;

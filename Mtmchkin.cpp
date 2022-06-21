@@ -18,18 +18,23 @@ Mtmchkin::Mtmchkin(const std::string fileName) : m_roundsPlayed(NO_ROUNDS_PLAYED
     bool gangCards = false;
     while (std::getline(file, cardName))
     {
-        if (is_Valid_card(cardName) == CARD_INVALID ||
-            ((cardName == "EndGang") && !gangCards) || gangCards && (cardName == "Gang"))
+        if ((is_Valid_card(cardName) == CARD_INVALID )||
+            (gangCards && (cardName == "Gang")) ||((cardName == "EndGang") && !gangCards) )
         {
             throw DeckFileFormatError(countLines);
         }
         if(cardName == "Gang")
         {
             gangCards = true;
+            m_deckCards.push(std::move(std::unique_ptr<Card>(new Gang())));
+            ++countLines;
+            continue;
+
         }
         if(cardName == "EndGang")
         {
             gangCards = false;
+            continue;
         }
         if(gangCards)
         {
@@ -39,13 +44,17 @@ Mtmchkin::Mtmchkin(const std::string fileName) : m_roundsPlayed(NO_ROUNDS_PLAYED
             }
 
            //Gang* g=dynamic_cast <Gang&>(m_deckCards.back());
-            m_deckCards.back()->addGangCard();
+            m_deckCards.back()->addGangCard(cardName);
         }
         else
         {
             m_deckCards.push(std::move(convet_stringToCard(cardName)));
         }
         ++countLines;
+    }
+    if(gangCards == true) //if endgang is not recieved 
+    {
+        throw DeckFileFormatError(countLines);
     }
 
     if (m_deckCards.size() < MIN_CARD_SIZE)
@@ -94,7 +103,7 @@ int Mtmchkin::is_Valid_card(const std::string cardName)
         return GANG_CARD;
     }
     if(cardName != "Merchant" && cardName != "Treasure" && cardName != "Pitfall"
-       && cardName != "Barfight" && cardName != "Fairy")
+       && cardName != "Barfight" && cardName != "Fairy"&&cardName!="Gang"&&cardName!="EndGang")
     {
         return CARD_INVALID;
     }

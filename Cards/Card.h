@@ -46,6 +46,7 @@ public:
 
     friend std::ostream& operator << (std::ostream& os, const Card& card);
     bool is_Valid_card (const std::string cardName);
+    virtual void addGangCard(std::string card_name){};
 
 
 protected:

@@ -40,6 +40,11 @@ bool Goblin:: gang_Encounter(Player& player, bool check) const
         loss(player);
         return false;
     }
+    else if (player.getAttackStrength() < MIN_FOR_WIN )//new
+    {
+        loss(player);
+        return false;
+    }
 
 
     player.addCoins(this->m_loot);
