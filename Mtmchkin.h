@@ -21,6 +21,7 @@
 #include "Cards/Dragon.h"
 #include "Cards/Vampire.h"
 #include "Cards/Goblin.h"
+#include "Cards/Gang.h"
 
 static const bool GAME_OVER = true;
 static const int FIRST_RANK = 1;

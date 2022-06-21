@@ -4,12 +4,13 @@
 #include "Card.h"
 #include "BattleCards.h"
 
-static const int MIN_FOR_WIN = 6;
 
 
 class Goblin : public BattleCards
 {
-    public:
+    static const int MIN_FOR_WIN = 6;
+
+public:
         Goblin();
         ~Goblin() override = default;
         Goblin(Goblin& goblin) = default;

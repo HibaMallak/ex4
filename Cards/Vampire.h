@@ -4,10 +4,12 @@
 #include "BattleCards.h"
 #include "Card.h"
 
-static const int MIN_FOR_WIN = 10;
+
 
 class Vampire : public BattleCards
 {
+    static const int MIN_FOR_WIN = 10;
+
     public:
         Vampire();
         ~Vampire() override = default;

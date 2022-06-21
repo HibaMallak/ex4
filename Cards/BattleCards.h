@@ -19,7 +19,6 @@ public:
 
     virtual bool gang_Encounter(Player& player, bool check) const =0;
 
-
 protected:
     int m_force;
     int m_loot;

@@ -3,12 +3,13 @@
 #include "BattleCards.h"
 //#include "Card.h"
 
-static const int MIN_FOR_WIN = 25;
 
 static const int DNE = 0;
 class Dragon : public BattleCards
 {
-    public:
+    static const int MIN_FOR_WIN = 25;
+
+public:
         Dragon();
         ~Dragon() override = default;
         Dragon(Dragon& dragon) = default;

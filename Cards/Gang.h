@@ -18,8 +18,7 @@ public:
     Gang& operator=(Gang& gang);
 
     void applyEncounter(Player& player) const override;
-    void Gang::addGangCard(std::string card_name);
-    std::deque<std::unique_ptr <BattleCards>> getGangCards() const;
+    void addGangCard(std::string card_name);
 
 private:
     std::deque<std::unique_ptr <BattleCards>> m_GangCards;

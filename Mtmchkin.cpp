@@ -18,7 +18,7 @@ Mtmchkin::Mtmchkin(const std::string fileName) : m_roundsPlayed(NO_ROUNDS_PLAYED
     bool gangCards = false;
     while (std::getline(file, cardName))
     {
-        if (is_Valid_card(cardName) == CARD_INVALID || 
+        if (is_Valid_card(cardName) == CARD_INVALID ||
             ((cardName == "EndGang") && !gangCards) || gangCards && (cardName == "Gang"))
         {
             throw DeckFileFormatError(countLines);
@@ -37,9 +37,11 @@ Mtmchkin::Mtmchkin(const std::string fileName) : m_roundsPlayed(NO_ROUNDS_PLAYED
             {
                 throw DeckFileFormatError(countLines);
             }
-            m_deckCards.back()->addGangCard(cardName);
+
+           //Gang* g=dynamic_cast <Gang&>(m_deckCards.back());
+            m_deckCards.back()->addGangCard();
         }
-        else 
+        else
         {
             m_deckCards.push(std::move(convet_stringToCard(cardName)));
         }
@@ -87,15 +89,15 @@ Mtmchkin::Mtmchkin(const std::string fileName) : m_roundsPlayed(NO_ROUNDS_PLAYED
 
 int Mtmchkin::is_Valid_card(const std::string cardName)
 {
-    if (cardName == "Goblin" || cardName == "Vampire" || cardName == "Dragon")  
+    if (cardName == "Goblin" || cardName == "Vampire" || cardName == "Dragon")
     {
         return GANG_CARD;
     }
-    if(cardName != "Merchant" && cardName != "Treasure" && cardName != "Pitfall" 
-        && cardName != "Barfight" && cardName != "Fairy")
-        {
-            return CARD_INVALID;
-        }
+    if(cardName != "Merchant" && cardName != "Treasure" && cardName != "Pitfall"
+       && cardName != "Barfight" && cardName != "Fairy")
+    {
+        return CARD_INVALID;
+    }
     return NON_GANG_CARD;
 }
 
@@ -147,6 +149,7 @@ std::unique_ptr<Player> Mtmchkin::convet_stringToPlayer(const std::string player
 
 std::unique_ptr<Card> Mtmchkin::convet_stringToCard(const std::string card_name)
 {
+    //need switch case?
 
     if (card_name == "Goblin")
     {

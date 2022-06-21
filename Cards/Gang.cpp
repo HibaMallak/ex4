@@ -8,16 +8,18 @@ Gang :: Gang() : Card("Gang")
 
 Gang::Gang(const Gang& gang)
 {
-    for(std::deque<std::unique_ptr <BattleCards>>::const_iterator it = gang.getGangCards().begin();
-        it!=gang.getGangCards().end(); ++it)
+    for(std::deque<std::unique_ptr <BattleCards>>::const_iterator it = gang.m_GangCards.begin();
+        it!=gang.m_GangCards.end(); ++it)
     {
-        m_GangCards.push_back(std::move(*it));
+        BattleCards* b = (*it).get();
+        this->m_GangCards.push_back(std::unique_ptr<BattleCards>(b));
+
     }
 }
 
 Gang& Gang::operator=(Gang& gang)
 {
-    if(this->getGangCards() == gang.getGangCards())
+    if(this->m_GangCards == gang.m_GangCards)
     {
         return *this;
     }
@@ -26,18 +28,15 @@ Gang& Gang::operator=(Gang& gang)
         m_GangCards.pop_front();
 
     }
-    for(std::deque<std::unique_ptr <BattleCards>>::const_iterator it = gang.getGangCards().begin();
-        it!=gang.getGangCards().end(); ++it)
+    for(std::deque<std::unique_ptr <BattleCards>>::const_iterator it = gang.m_GangCards.begin();
+        it!=gang.m_GangCards.end(); ++it)
     {
-        m_GangCards.push_back(std::move(*it));
+        BattleCards* b = (*it).get();
+        this->m_GangCards.push_back(std::unique_ptr<BattleCards>(b));
     }
     return *this;
 }
 
-std::deque<std::unique_ptr <BattleCards>> Gang::getGangCards() const
-{
-    return m_GangCards;
-}
 
 void Gang::applyEncounter(Player& player) const
 {
