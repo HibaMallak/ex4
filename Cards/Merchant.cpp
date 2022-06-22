@@ -12,11 +12,10 @@ void Merchant::applyEncounter(Player& player) const
 {
     printMerchantInitialMessageForInteractiveEncounter(std::cout, player.getPlayerName(), player.getPlayerCoins());
     int paid = 0;
-    bool stoiFuncWork = true;
+    //bool stoiFuncWork = false;
     std::string playerChoice;
-    std::cin >> playerChoice;
     int intPlayerChoice;
-    do
+    while(getline(std::cin, playerChoice))
     {
         try
         {
@@ -24,19 +23,47 @@ void Merchant::applyEncounter(Player& player) const
         }
         catch(...)
         {
+            printInvalidInput();
+            continue;
+        }
+        if(intPlayerChoice < LEAVE || intPlayerChoice > FORCE_BOOST)
+        {
+            printInvalidInput();
+            continue;
+        }
+        else
+        {
+            break;
+        }  
+    }
+/*
+    do
+    {
+        try
+        {
+            getline(std::cin, playerChoice);
+            intPlayerChoice = std::stoi(playerChoice);
+            stoiFuncWork = true;
+        }
+        catch(...)
+        {
             stoiFuncWork = false;
             printInvalidInput();
-            std::cin >> playerChoice;
         }
         if(stoiFuncWork)
         {
-            if(intPlayerChoice > LEAVE || intPlayerChoice < FORCE_BOOST)
+            if(intPlayerChoice < LEAVE || intPlayerChoice > FORCE_BOOST)
             {
                 stoiFuncWork = false;
+                printInvalidInput();
+            }
+            else
+            {
+                break;
             }
         }
     } while (!stoiFuncWork);
-
+*/
     if(intPlayerChoice == HEALTH_POTION)
     {
         if (!player.pay(this->m_coinsPerPotion))
