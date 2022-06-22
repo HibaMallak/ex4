@@ -1,54 +1,45 @@
 #include "BattleCards.h"
 
 
-BattleCards::BattleCards(std::string m_name) : Card(m_name)
+BattleCards::BattleCards(const std::string m_name) : Card(m_name)
 {
 
 }
 
 void BattleCards:: applyEncounter(Player& player) const
  {
-    if(this->m_cardName == "Dragon")
+    if(this->m_cardName == DRAGON)
     {
-        if(player.getAttackStrength()< 25)
+        if(player.getAttackStrength() < MIN_TO_WIN_DRAGON)
         {
             loss(player);
         }
-        else{
+        else
+        {
             win(player);
         }
     }
-    if(this->m_cardName == "Goblin")
+    if(this->m_cardName == GOBLIN)
     {
-        if(player.getAttackStrength() < 6)
-    {
-        loss(player);
-    }
-    else
-    {
-        win(player);
-    }
+        if(player.getAttackStrength() < MIN_TO_WIN_GOBLIN)
+        {
+            loss(player);
+        }
+        else
+        {
+            win(player);
+        }
 
     }
-    if(this->m_cardName == "Vampire")
+    if(this->m_cardName == VAMPIRE)
     {
-        if(player.getAttackStrength() < 10 )
-    {
-        loss(player);
+        if(player.getAttackStrength() < MIN_TO_WIN_VAMPIRE )
+        {
+            loss(player);
+        }
+        else
+        {
+            win(player);
+        }
     }
-    else
-    {
-        win(player);
-    }
-    }
-    /*
-    if(player.getAttackStrength() < this->m_force )
-    {
-        loss(player);
-    }
-    else
-    {
-        win(player);
-    }*/
-
 }

@@ -10,7 +10,6 @@ void Barfight::applyEncounter(Player& player) const
 {
     try
     {
-        //Fighter& check = dynamic_cast <Fighter&>(player);
         dynamic_cast <Fighter&>(player);
     }
     catch (const std::bad_cast&)
@@ -19,7 +18,6 @@ void Barfight::applyEncounter(Player& player) const
         printBarfightMessage(IS_FIGHTER);
         return;
     }
-
     printBarfightMessage(!IS_FIGHTER);
 }
 

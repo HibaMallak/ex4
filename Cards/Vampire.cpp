@@ -1,23 +1,22 @@
 #include "Vampire.h"
 
-Vampire::Vampire() : BattleCards("Vampire")
+Vampire::Vampire() : BattleCards(VAMPIRE)
 {
 
 }
-
 
 void Vampire:: win (Player& player) const
 {
         player.levelUp();
         player.addCoins(this->m_loot);
-        printWinBattle(player.getPlayerName(), "Vampire");
+        printWinBattle(player.getPlayerName(), VAMPIRE);
 }
 
 void Vampire:: loss (Player& player) const
 {
-    if (player.getPlayerHP() - m_damage <= 0)
+    if (player.getPlayerHealthPoints() - m_damage <= MIN_NATURAL)
     {
-        player.damage(player.getPlayerHP());
+        player.damage(player.getPlayerHealthPoints());
     }
     else
     {
@@ -25,13 +24,13 @@ void Vampire:: loss (Player& player) const
     }
 
     player.lowerForce(this->m_forceToLose);
-    printLossBattle(player.getPlayerName(), "Vampire");
+    printLossBattle(player.getPlayerName(), VAMPIRE);
 
 }
 
 std::ostream& Vampire::printInfo(std::ostream& os) const
 {
-    printCardDetails(os, "Vampire");
+    printCardDetails(os, VAMPIRE);
     printMonsterDetails(os, this->m_force, this->m_damage, this->m_loot, !IS_DRAGON);
     printEndOfCardDetails(os);
     return os;
@@ -39,19 +38,17 @@ std::ostream& Vampire::printInfo(std::ostream& os) const
 
 bool Vampire:: gang_Encounter(Player& player, bool check) const
 {
-    if (!check || (player.getAttackStrength() < MIN_FOR_WIN ))
+    if (!check)
     {
         loss(player);
         return false;
     }
-    else if (player.getAttackStrength() < MIN_FOR_WIN )//new
+    else if (player.getAttackStrength() < MIN_TO_WIN_VAMPIRE)
     {
         loss(player);
         return false;
     }
-
 
     player.addCoins(this->m_loot);
     return true;
-
 }

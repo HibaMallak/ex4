@@ -12,58 +12,8 @@ void Merchant::applyEncounter(Player& player) const
 {
     printMerchantInitialMessageForInteractiveEncounter(std::cout, player.getPlayerName(), player.getPlayerCoins());
     int paid = 0;
-    //bool stoiFuncWork = false;
-    std::string playerChoice;
-    int intPlayerChoice;
-    while(getline(std::cin, playerChoice))
-    {
-        try
-        {
-            intPlayerChoice = std::stoi(playerChoice);
-        }
-        catch(...)
-        {
-            printInvalidInput();
-            continue;
-        }
-        if(intPlayerChoice < LEAVE || intPlayerChoice > FORCE_BOOST)
-        {
-            printInvalidInput();
-            continue;
-        }
-        else
-        {
-            break;
-        }  
-    }
-/*
-    do
-    {
-        try
-        {
-            getline(std::cin, playerChoice);
-            intPlayerChoice = std::stoi(playerChoice);
-            stoiFuncWork = true;
-        }
-        catch(...)
-        {
-            stoiFuncWork = false;
-            printInvalidInput();
-        }
-        if(stoiFuncWork)
-        {
-            if(intPlayerChoice < LEAVE || intPlayerChoice > FORCE_BOOST)
-            {
-                stoiFuncWork = false;
-                printInvalidInput();
-            }
-            else
-            {
-                break;
-            }
-        }
-    } while (!stoiFuncWork);
-*/
+    int intPlayerChoice = getAndCheckChoice();
+
     if(intPlayerChoice == HEALTH_POTION)
     {
         if (!player.pay(this->m_coinsPerPotion))
@@ -94,8 +44,37 @@ void Merchant::applyEncounter(Player& player) const
     {
         printMerchantSummary(std::cout, player.getPlayerName(), LEAVE, paid);
     }
+
 }
 
+int Merchant::getAndCheckChoice() const 
+{
+    std::string choice;
+    int intChoice;
+    while(getline(std::cin, choice))
+    {
+        try
+        {
+            intChoice = std::stoi(choice);
+        }
+        catch(...)
+        {
+            printInvalidInput();
+            continue;
+        }
+        if(intChoice < LEAVE || intChoice > FORCE_BOOST)
+        {
+            printInvalidInput();
+            continue;
+        }
+        else
+        {
+            break;
+        }  
+    }
+
+    return intChoice;
+}
 
 std::ostream& Merchant:: printInfo(std::ostream& os) const
 {

@@ -5,11 +5,11 @@ Fairy :: Fairy() : Card("Fairy")
 {
 
 }
+
 void Fairy::applyEncounter(Player& player) const
 {
     try
     {
-        //Wizard& check= dynamic_cast <Wizard&>(player);
         dynamic_cast <Wizard&>(player);
     }
     catch (const std::bad_cast&)
@@ -17,7 +17,7 @@ void Fairy::applyEncounter(Player& player) const
         printFairyMessage(!IS_WIZARD);
         return;
     }
-    player.heal(this->m_FairyHP);
+    player.heal(this->m_FairyHealthPoints);
     printFairyMessage(IS_WIZARD);
 }
 

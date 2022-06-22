@@ -6,12 +6,10 @@ Pitfall :: Pitfall() : Card("Pitfall")
 
 }
 
-
 void Pitfall::applyEncounter(Player& player) const
 {
     try
     {
-       // Rogue& check= dynamic_cast <Rogue&>(player);
         dynamic_cast <Rogue&>(player);
     }
     catch (const std::bad_cast&)
@@ -20,12 +18,8 @@ void Pitfall::applyEncounter(Player& player) const
         printPitfallMessage(IS_ROUGE);
         return;
     }
-
     printPitfallMessage(!IS_ROUGE);
-
-
 }
-
 
 std::ostream& Pitfall::printInfo(std::ostream& os) const
 {
