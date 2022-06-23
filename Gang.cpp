@@ -1,5 +1,5 @@
 #include "Gang.h"
-
+#include <fstream>
 
 Gang :: Gang() : Card("Gang")
 {
@@ -8,78 +8,100 @@ Gang :: Gang() : Card("Gang")
 
 Gang::Gang(const Gang& gang)
 {
-    for(std::deque<std::unique_ptr <BattleCards>>::const_iterator it = gang.getGangCards().begin();
-        it!=gang.getGangCards().end(); ++it)
+    for(std::deque<std::unique_ptr <BattleCards>>::const_iterator it = gang.m_gangCards.begin();
+        it!=gang.m_gangCards.end(); ++it)
     {
-        m_GangCards.push_back(std::move(*it));
+        BattleCards* b = (*it).get();
+        this->m_gangCards.push_back(std::unique_ptr<BattleCards>(b));
     }
 }
 
-Gang& Gang::operator=(Gang& gang)
+Gang& Gang::operator=(const Gang& gang)
 {
-    if(this->getGangCards() == gang.getGangCards())
+    if(this == &gang)
     {
         return *this;
     }
-    while(!m_GangCards.empty())
+    while(!m_gangCards.empty())
     {
-        m_GangCards.pop_front();
+        m_gangCards.pop_front();
 
     }
-    for(std::deque<std::unique_ptr <BattleCards>>::const_iterator it = gang.getGangCards().begin();
-        it!=gang.getGangCards().end(); ++it)
+    for(std::deque<std::unique_ptr <BattleCards>>::const_iterator it = gang.m_gangCards.begin();
+        it != gang.m_gangCards.end(); ++it)
     {
-        m_GangCards.push_back(std::move(*it));
+        BattleCards* b = (*it).get();
+        this->m_gangCards.push_back(std::unique_ptr<BattleCards>(b));
     }
     return *this;
 }
 
-std::deque<std::unique_ptr <BattleCards>> Gang::getGangCards() const
-{
-    return m_GangCards;
-}
 
 void Gang::applyEncounter(Player& player) const
 {
-    bool KEEP_BATTLE = true;
+    bool keepBattle = true;
 
-    for(std::deque<std::unique_ptr <BattleCards>>::const_iterator it= m_GangCards.begin(); it!=m_GangCards.end(); ++it)
+    for(std::deque<std::unique_ptr <BattleCards>>::const_iterator it = m_gangCards.begin();
+        it != m_gangCards.end(); ++it)
     {
-        if (KEEP_BATTLE)
+        if (keepBattle)
         {
-            if ((*it)->gang_Encounter(player,KEEP_BATTLE))
+            if ((*it)->gang_Encounter(player, keepBattle))
             {
                 continue;
             }
 
-            KEEP_BATTLE= false;
+            keepBattle = false;
         }
 
         else
         {
-            (*it)->gang_Encounter(player,KEEP_BATTLE);
+            (*it)->gang_Encounter(player, keepBattle);
         }
     }
 
-    if (KEEP_BATTLE== true)
+    if (keepBattle)
     {
         player.levelUp();
-        printWinBattle(player.getPlayerName(),"Gang");
+        printWinBattle(player.getPlayerName(), "Gang");
     }
 }
 
-void Gang::addGangCard(std::string card_name)
+void Gang::buildGang(std::ifstream &file, std::string card, int &countLines)
 {
-    if (card_name == "Goblin")
+
+    while(std::getline(file, card))
     {
-        m_GangCards.push_back(std::unique_ptr<BattleCards>(new Goblin()));
+        if(card == "EndGang")
+        {
+            return;
+        }
+        if ((isValidCard(card) != GANG_CARD ) || (card == "Gang"))
+        {
+            throw DeckFileFormatError(countLines);
+        }
+        m_gangCards.push_back(std::move(addGangCard(card)));
+        ++countLines;
     }
-    if (card_name == "Vampire")
+
+    throw DeckFileFormatError(countLines);
+}
+
+std::unique_ptr<BattleCards> Gang::addGangCard(std::string cardName) const
+{
+    if (cardName == "Goblin")
     {
-        m_GangCards.push_back(std::unique_ptr<BattleCards>(new Vampire()));
+        return std::unique_ptr<BattleCards>(new Goblin());
     }
-    if (card_name == "Dragon")
+    if (cardName == "Vampire")
     {
-        m_GangCards.push_back(std::unique_ptr<BattleCards>(new Dragon()));
+        return std::unique_ptr<BattleCards>(new Vampire());
     }
+    
+    return std::unique_ptr<BattleCards>(new Dragon());
+}
+
+std::ostream& Gang::printInfo(std::ostream& os) const
+{
+    return os;
 }

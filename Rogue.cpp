@@ -1,7 +1,7 @@
 #include "Rogue.h"
-#include "utilities.h"
+#include "../utilities.h"
 
-Rogue::Rogue(std::string name) : Player(name)
+Rogue::Rogue(const std::string name) : Player(name)
 {
 
 }
@@ -16,6 +16,7 @@ void Rogue::addCoins(int coinsToAdd)
 
 std::ostream& Rogue::printPlayerInfo(std::ostream& os) const
 {
-    printPlayerDetails(os, this->m_name, "Rogue", this->m_level, this->m_force, this->m_HP, this->m_coins);
+    printPlayerDetails(os, this->m_name, "Rogue", this->m_level, this->m_force, this->m_healthPoints, 
+        this->m_coins);
     return os;
 }
