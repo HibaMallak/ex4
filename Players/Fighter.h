@@ -15,7 +15,7 @@ public:
       * @return
       *      A new instance of Player.
       */
-      Fighter(std::string name);
+      Fighter(const std::string name);
 
       /*
       * D'tor of Fighter class

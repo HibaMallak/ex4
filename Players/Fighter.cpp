@@ -1,7 +1,7 @@
 #include "Fighter.h"
 #include "../utilities.h"
 
-Fighter::Fighter(std::string name) : Player(name)
+Fighter::Fighter(const std::string name) : Player(name)
 {
 
 }

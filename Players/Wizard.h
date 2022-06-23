@@ -16,7 +16,7 @@ public:
         * @return
         *      A new instance of Wizard.
         */
-        Wizard(std::string name);
+        Wizard(const std::string name);
 
         /*
         * D'tor of Wizard class

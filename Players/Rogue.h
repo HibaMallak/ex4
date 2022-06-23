@@ -15,7 +15,7 @@ public:
         * @return
         *      A new instance of Rogue.
         */
-        Rogue(std::string name);
+        Rogue(const std::string name);
         
         /*
         * Copy c'tor of Rogue class

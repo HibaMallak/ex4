@@ -64,7 +64,7 @@ public:
     * @return
     *       a unique pointer of a new instance of BattleCards.
     */
-    std::unique_ptr<BattleCards> addGangCard(std::string cardName);
+    std::unique_ptr<BattleCards> addGangCard(std::string cardName) const;
 
     /*
      * fills the m_gangCards with the gang cards given in the file
@@ -87,7 +87,7 @@ public:
     std::ostream& printInfo(std::ostream& os) const override;
 
 private:
-    std::deque<std::unique_ptr <BattleCards>> m_GangCards;
+    std::deque<std::unique_ptr <BattleCards>> m_gangCards;
 
 };
 #endif

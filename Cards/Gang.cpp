@@ -8,11 +8,11 @@ Gang :: Gang() : Card("Gang")
 
 Gang::Gang(const Gang& gang)
 {
-    for(std::deque<std::unique_ptr <BattleCards>>::const_iterator it = gang.m_GangCards.begin();
-        it!=gang.m_GangCards.end(); ++it)
+    for(std::deque<std::unique_ptr <BattleCards>>::const_iterator it = gang.m_gangCards.begin();
+        it!=gang.m_gangCards.end(); ++it)
     {
         BattleCards* b = (*it).get();
-        this->m_GangCards.push_back(std::unique_ptr<BattleCards>(b));
+        this->m_gangCards.push_back(std::unique_ptr<BattleCards>(b));
     }
 }
 
@@ -22,16 +22,16 @@ Gang& Gang::operator=(const Gang& gang)
     {
         return *this;
     }
-    while(!m_GangCards.empty())
+    while(!m_gangCards.empty())
     {
-        m_GangCards.pop_front();
+        m_gangCards.pop_front();
 
     }
-    for(std::deque<std::unique_ptr <BattleCards>>::const_iterator it = gang.m_GangCards.begin();
-        it != gang.m_GangCards.end(); ++it)
+    for(std::deque<std::unique_ptr <BattleCards>>::const_iterator it = gang.m_gangCards.begin();
+        it != gang.m_gangCards.end(); ++it)
     {
         BattleCards* b = (*it).get();
-        this->m_GangCards.push_back(std::unique_ptr<BattleCards>(b));
+        this->m_gangCards.push_back(std::unique_ptr<BattleCards>(b));
     }
     return *this;
 }
@@ -41,8 +41,8 @@ void Gang::applyEncounter(Player& player) const
 {
     bool keepBattle = true;
 
-    for(std::deque<std::unique_ptr <BattleCards>>::const_iterator it = m_GangCards.begin();
-        it != m_GangCards.end(); ++it)
+    for(std::deque<std::unique_ptr <BattleCards>>::const_iterator it = m_gangCards.begin();
+        it != m_gangCards.end(); ++it)
     {
         if (keepBattle)
         {
@@ -80,14 +80,14 @@ void Gang::buildGang(std::ifstream &file, std::string card, int &countLines)
         {
             throw DeckFileFormatError(countLines);
         }
-        m_GangCards.push_back(std::move(addGangCard(card)));
+        m_gangCards.push_back(std::move(addGangCard(card)));
         ++countLines;
     }
 
     throw DeckFileFormatError(countLines);
 }
 
-std::unique_ptr<BattleCards> Gang::addGangCard(std::string cardName)
+std::unique_ptr<BattleCards> Gang::addGangCard(std::string cardName) const
 {
     if (cardName == "Goblin")
     {
